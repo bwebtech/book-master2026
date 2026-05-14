@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نهج اليقين في شرح مناهج المؤلفين</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════
+   CSS VARIABLES — DARK (default) & LIGHT (.lm)
+═══════════════════════════════════════════════ */
+:root {
+  --bg:       #0d3320;
+  --bg2:      #060e0a;
+  --bg3:      #0a1f0f;
+  --card:     rgba(255,255,255,0.07);
+  --card-brd: rgba(201,168,76,0.22);
+  --gold:     #c9a84c;
+  --goldl:    #e0c97b;
+  --goldp:    #f5e6b2;
+  --tx:       #f0e8d4;
+  --txm:      rgba(240,232,212,0.68);
+  --txl:      rgba(240,232,212,0.40);
+  --nav-bg:   rgba(10,40,22,0.94);
+  --brd:      rgba(201,168,76,0.28);
+  --inp-bg:   rgba(255,255,255,0.07);
+  --inp-clr:  #f0e8d4;
+}
+body.lm {
+  --bg:       #f5f0e8;
+  --bg2:      #ede7d8;
+  --bg3:      #e6dfc8;
+  --card:     rgba(255,255,255,0.72);
+  --card-brd: rgba(100,70,10,0.20);
+  --gold:     #8a5e10;
+  --goldl:    #6a4408;
+  --goldp:    #4a2c04;
+  --tx:       #1a2a1c;
+  --txm:      rgba(20,36,22,0.70);
+  --txl:      rgba(20,36,22,0.44);
+  --nav-bg:   rgba(245,240,232,0.96);
+  --brd:      rgba(100,70,10,0.22);
+  --inp-bg:   rgba(255,255,255,0.65);
+  --inp-clr:  #1a2a1c;
+}
+
+/* ═══════════════════════════ RESET ══════════════ */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--tx);direction:rtl;overflow-x:hidden;transition:background .4s,color .4s}
+
+/* ═══════════════════════════ NAV ═══════════════ */
+nav{position:fixed;top:0;width:100%;z-index:999;background:var(--nav-bg);backdrop-filter:blur(18px);border-bottom:1px solid var(--brd);height:62px;display:flex;align-items:center;padding:0 1.4rem;gap:1rem;transition:background .4s,box-shadow .3s}
+nav.sc{box-shadow:0 4px 28px rgba(0,0,0,.35)}
+.nlogo{font-family:'Amiri',serif;color:var(--gold);display:flex;align-items:center;gap:.45rem;font-size:.95rem;text-decoration:none;flex-shrink:0}
+.nlinks{display:flex;gap:1.1rem;list-style:none;flex:1;justify-content:center}
+.nlinks a{color:var(--tx);text-decoration:none;font-size:.79rem;font-weight:600;transition:color .2s;position:relative;white-space:nowrap}
+.nlinks a::after{content:'';position:absolute;bottom:-3px;right:0;width:0;height:1px;background:var(--gold);transition:width .28s}
+.nlinks a:hover{color:var(--gold)}.nlinks a:hover::after{width:100%}
+.ntgl{background:var(--card);border:1px solid var(--card-brd);color:var(--gold);padding:5px 11px;border-radius:18px;cursor:pointer;font-size:.76rem;font-family:'Cairo',sans-serif;white-space:nowrap;transition:background .2s}
+.ntgl:hover{background:rgba(201,168,76,.15)}
+@media(max-width:860px){.nlinks{display:none}}
+
+/* ═══════════════════════════ HERO ══════════════ */
+#hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:62px;
+  background:radial-gradient(ellipse at 68% 42%,#1a4d30 0%,#0d3320 52%,#060e0a 100%)}
+body.lm #hero{background:radial-gradient(ellipse at 68% 42%,#c8dfc8 0%,#ddd8c4 52%,#ccc8b0 100%)}
+.gpat{position:absolute;inset:0;opacity:.038;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='%23c9a84c' stroke-width='.5'%3E%3Cpolygon points='40,4 56,20 70,20 70,56 56,70 40,76 24,70 10,56 10,20 24,20'/%3E%3Cpolygon points='40,14 52,26 60,26 60,54 52,62 40,66 28,62 20,54 20,26 28,26'/%3E%3C/g%3E%3C/svg%3E")}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
+.o1{width:480px;height:480px;background:rgba(82,183,136,.08);top:-90px;right:-90px;animation:fl1 8s ease-in-out infinite}
+.o2{width:330px;height:330px;background:rgba(201,168,76,.06);bottom:-40px;left:90px;animation:fl2 10s ease-in-out infinite}
+@keyframes fl1{0%,100%{transform:translate(0,0)}50%{transform:translate(-28px,36px)}}
+@keyframes fl2{0%,100%{transform:translate(0,0)}50%{transform:translate(18px,-28px)}}
+.hc{max-width:1180px;margin:0 auto;padding:3.8rem 1.8rem;display:grid;grid-template-columns:1fr 1fr;gap:2.8rem;align-items:center;width:100%;position:relative;z-index:2}
+@media(max-width:740px){.hc{grid-template-columns:1fr;gap:2rem;text-align:center}.bv{order:-1}.hbtns{justify-content:center!important}}
+.hbdg{display:inline-flex;align-items:center;background:rgba(201,168,76,.14);border:1px solid rgba(201,168,76,.38);color:var(--goldl);font-size:.74rem;padding:4px 12px;border-radius:18px;margin-bottom:1rem;animation:fid .8s ease both}
+.htit{font-family:'Amiri',serif;font-size:clamp(1.85rem,3.8vw,2.95rem);font-weight:700;line-height:1.3;color:var(--tx);margin-bottom:.65rem;animation:fid .8s .1s ease both}
+.htit span{color:var(--gold)}
+.hsub{font-size:.91rem;color:var(--txm);line-height:1.9;margin-bottom:1.4rem;animation:fid .8s .2s ease both}
+.hmeta{font-size:.77rem;color:var(--goldp);margin-bottom:1.7rem;line-height:2.1;animation:fid .8s .3s ease both}
+.hmeta span{display:block}
+.hbtns{display:flex;flex-wrap:nowrap;gap:.55rem;animation:fid .8s .4s ease both;align-items:center}
+@media(max-width:500px){.hbtns{flex-wrap:wrap}}
+/* BUTTONS */
+.bp{background:linear-gradient(135deg,var(--gold),#9a6e18);color:#fff8e8;font-weight:700;padding:10px 18px;border:none;border-radius:8px;cursor:pointer;font-size:.81rem;font-family:'Cairo',sans-serif;transition:all .24s;display:inline-flex;align-items:center;gap:.35rem;box-shadow:0 4px 18px rgba(201,168,76,.28);white-space:nowrap;text-decoration:none}
+.bp:hover{transform:translateY(-2px);box-shadow:0 7px 24px rgba(201,168,76,.38)}
+body.lm .bp{color:#2a1400}
+.bo{background:transparent;color:var(--tx);border:1px solid var(--brd);padding:10px 15px;border-radius:8px;cursor:pointer;font-size:.81rem;font-family:'Cairo',sans-serif;transition:all .24s;display:inline-flex;align-items:center;gap:.35rem;white-space:nowrap;text-decoration:none}
+.bo:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.07)}
+
+/* BOOK IMAGE */
+.bv{display:flex;justify-content:center;align-items:center;animation:fil 1s .3s ease both}
+.book-img-wrap{position:relative;cursor:pointer;display:inline-block}
+.book-img-real{
+  width:255px;max-width:88vw;border-radius:4px 14px 14px 4px;
+  box-shadow:-18px 22px 55px rgba(0,0,0,.65),4px 0 12px rgba(0,0,0,.35);
+  animation:bookfloat 5s ease-in-out infinite;
+  transition:transform .3s,box-shadow .3s;display:block;
+}
+.book-img-real:hover{transform:scale(1.03) translateY(-6px) !important;
+  box-shadow:-22px 28px 65px rgba(0,0,0,.7),6px 0 18px rgba(0,0,0,.4);}
+@keyframes bookfloat{
+  0%,100%{transform:translateY(0) rotate(-1.5deg)}
+  50%{transform:translateY(-14px) rotate(-1.5deg)}
+}
+.book-img-shadow{
+  width:78%;height:18px;
+  background:radial-gradient(ellipse,rgba(0,0,0,.48) 0%,transparent 72%);
+  margin:5px auto 0;animation:shadowpulse 5s ease-in-out infinite;
+}
+@keyframes shadowpulse{
+  0%,100%{transform:scaleX(1);opacity:.65}
+  50%{transform:scaleX(.8);opacity:.35}
+}
+
+/* FLOATING BADGE */
+.fbadge{position:fixed;bottom:20px;left:20px;z-index:900;animation:fbf 3s ease-in-out infinite}
+@keyframes fbf{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.fbi{background:linear-gradient(135deg,#1e5c37,#0d3320);border:1px solid rgba(201,168,76,.48);border-radius:10px;padding:.48rem .75rem;display:flex;align-items:center;gap:.4rem;box-shadow:0 7px 24px rgba(0,0,0,.48);cursor:pointer;transition:transform .2s}
+.fbi:hover{transform:scale(1.04)}
+.fbc{width:26px;height:37px;background:linear-gradient(160deg,#2a7a4a,#0d3320);border-radius:2px 5px 5px 2px;border:1px solid rgba(201,168,76,.38);display:flex;align-items:center;justify-content:center;font-size:.56rem;color:var(--gold);font-family:'Amiri',serif}
+.fbt{color:var(--goldl);font-size:.65rem;font-family:'Amiri',serif;line-height:1.4}
+
+/* ═══════════════════════════ SECTIONS ══════════ */
+section{padding:5rem 1.8rem}
+.slbl{display:inline-flex;align-items:center;gap:.45rem;color:var(--gold);font-size:.73rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:.65rem}
+.slbl::before,.slbl::after{content:'';display:inline-block;width:17px;height:1px;background:var(--gold);opacity:.6}
+.stit{font-family:'Amiri',serif;font-size:clamp(1.6rem,2.8vw,2.35rem);color:var(--tx);margin-bottom:.8rem;line-height:1.3}
+.stit span{color:var(--gold)}
+.sdsc{color:var(--txm);line-height:1.9;font-size:.9rem;max-width:640px}
+.mxw{max-width:1180px;margin:0 auto}
+.tc{text-align:center}.tc .sdsc{margin:0 auto}
+
+/* ═══════════════════════════ ABOUT ══════════════ */
+#about{background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%)}
+.agr{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:2.5rem}
+@media(max-width:700px){.agr{grid-template-columns:1fr}}
+.ac{background:var(--card);border:1px solid var(--card-brd);border-radius:14px;padding:1.5rem;backdrop-filter:blur(8px);transition:transform .28s,border-color .28s;margin-bottom:1rem}
+.ac:hover{transform:translateY(-3px);border-color:rgba(201,168,76,.4)}
+.ac h3{font-family:'Amiri',serif;color:var(--gold);font-size:1.08rem;margin-bottom:.6rem}
+.ac p,.ac li{color:var(--txm);line-height:1.9;font-size:.87rem}
+.ali{list-style:none}.ali li{padding:.45rem 0;border-bottom:1px solid rgba(128,128,128,.12);display:flex;align-items:flex-start;gap:.42rem}
+.ali li::before{content:'◆';color:var(--gold);font-size:.4rem;margin-top:5px;flex-shrink:0}
+
+/* ═══════════════════════════ CHAPTERS ══════════ */
+#chapters{background:var(--bg)}
+.cgr{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.1rem;margin-top:2.3rem}
+.cc{background:linear-gradient(140deg,rgba(26,77,48,.55),rgba(10,30,18,.8));border:1px solid var(--card-brd);border-radius:14px;padding:1.45rem;transition:all .32s;position:relative;overflow:hidden}
+body.lm .cc{background:linear-gradient(140deg,rgba(200,228,200,.5),rgba(175,210,170,.7))}
+.cc::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,.06),transparent);opacity:0;transition:opacity .28s}
+.cc:hover::before{opacity:1}
+.cc:hover{transform:translateY(-5px);border-color:rgba(201,168,76,.5);box-shadow:0 16px 42px rgba(0,0,0,.38)}
+.cci{width:48px;height:48px;border-radius:11px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;font-size:1.35rem;margin-bottom:.85rem}
+.cc h3{font-family:'Amiri',serif;color:var(--tx);font-size:1.02rem;margin-bottom:.42rem}
+.cc p{color:var(--txm);font-size:.79rem;line-height:1.7;margin-bottom:.85rem}
+.cbt{color:var(--gold);font-size:.76rem;font-weight:700;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);cursor:pointer;font-family:'Cairo',sans-serif;display:inline-flex;align-items:center;gap:.3rem;border-radius:6px;padding:5px 12px;transition:all .2s}
+.cbt:hover{background:rgba(201,168,76,.2);gap:.5rem}
+
+/* ═══════════════════════════ TIMELINE ══════════ */
+#method{background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%)}
+.tl{margin-top:2.6rem;position:relative}
+.tl::before{content:'';position:absolute;right:26px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--gold),rgba(201,168,76,.08))}
+.ti{display:flex;gap:1.2rem;margin-bottom:1.9rem;align-items:flex-start}
+.td{width:50px;height:50px;border-radius:50%;flex-shrink:0;background:var(--bg);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.1rem;position:relative;z-index:1;box-shadow:0 0 0 4px rgba(201,168,76,.08)}
+.tco{background:var(--card);border:1px solid var(--card-brd);border-radius:11px;padding:1.05rem;flex:1;transition:border-color .26s}
+.tco:hover{border-color:rgba(201,168,76,.38)}
+.tco h4{font-family:'Amiri',serif;color:var(--gold);font-size:.95rem;margin-bottom:.35rem}
+.tco p{color:var(--txm);font-size:.82rem;line-height:1.8}
+
+/* ═══════════════════════════ STATS ══════════════ */
+#stats{background:linear-gradient(135deg,var(--bg2),var(--bg3))}
+.sgr{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1.5rem;margin-top:2.3rem}
+.sc2{text-align:center;padding:1.9rem 1rem;background:var(--card);border:1px solid var(--card-brd);border-radius:14px;position:relative;overflow:hidden;transition:all .28s}
+.sc2::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .28s}
+.sc2:hover::before{opacity:1}
+.sc2:hover{transform:translateY(-3px)}
+.sn{font-family:'Amiri',serif;font-size:2.8rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:.35rem}
+.slb{color:var(--txm);font-size:.84rem}
+
+/* ═══════════════════════════ TEAM ══════════════ */
+#team{background:var(--bg)}
+.tgr{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:1rem;margin-top:2.3rem}
+.tcrd{background:var(--card);border:1px solid var(--card-brd);border-radius:12px;padding:1.15rem;text-align:center;transition:all .3s}
+.tcrd:hover{transform:translateY(-4px);border-color:rgba(201,168,76,.4);box-shadow:0 12px 32px rgba(0,0,0,.22)}
+.tav{width:65px;height:65px;border-radius:50%;margin:0 auto .65rem;background:linear-gradient(135deg,#2d6a4f,#1a4d30);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Amiri',serif;font-size:1.2rem;color:var(--goldl)}
+body.lm .tav{background:linear-gradient(135deg,#a0c4a8,#78a880)}
+.tcrd.sup .tav{width:80px;height:80px;font-size:1.35rem;border-width:3px;box-shadow:0 0 0 5px rgba(201,168,76,.1)}
+.tcrd.sup{border-color:rgba(201,168,76,.45);background:rgba(201,168,76,.04)}
+.tnm{font-family:'Amiri',serif;color:var(--tx);font-size:.86rem;margin-bottom:.2rem}
+.trl{color:var(--gold);font-size:.68rem;font-weight:600}
+.tdsc{color:var(--txl);font-size:.72rem;margin-top:.35rem;line-height:1.6}
+.sbdg{display:inline-block;background:rgba(201,168,76,.13);border:1px solid rgba(201,168,76,.28);color:var(--goldl);font-size:.64rem;padding:2px 8px;border-radius:18px;margin-bottom:.5rem}
+
+/* ═══════════════════════════ LIBRARY ══════════ */
+#library{background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%)}
+.sbar{display:flex;gap:.4rem;max-width:490px;margin:1.3rem auto 0}
+.sbar input{flex:1;background:var(--inp-bg);border:1px solid var(--card-brd);border-radius:8px;padding:9px 12px;color:var(--inp-clr);font-family:'Cairo',sans-serif;font-size:.85rem;outline:none;transition:border-color .2s;direction:rtl}
+.sbar input::placeholder{color:var(--txl)}
+.sbar input:focus{border-color:var(--gold)}
+.sbar button{background:rgba(201,168,76,.14);border:1px solid var(--card-brd);color:var(--gold);padding:9px 12px;border-radius:8px;cursor:pointer;font-family:'Cairo',sans-serif;font-size:.82rem;transition:all .2s}
+.sbar button:hover{background:rgba(201,168,76,.26)}
+#lnf{display:none;text-align:center;padding:1.6rem;color:var(--goldl);font-family:'Amiri',serif;font-size:1rem;background:var(--card);border:1px solid var(--card-brd);border-radius:11px;margin-top:.85rem}
+.lcat{margin-bottom:1rem;border:1px solid var(--card-brd);border-radius:12px;overflow:hidden}
+.lch{background:linear-gradient(135deg,rgba(26,77,48,.68),rgba(10,30,18,.9));padding:.88rem 1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between;user-select:none;transition:filter .22s}
+body.lm .lch{background:linear-gradient(135deg,rgba(190,220,190,.6),rgba(155,195,155,.8))}
+.lch:hover{filter:brightness(1.1)}
+.lctit{font-family:'Amiri',serif;color:var(--gold);font-size:1.02rem;display:flex;align-items:center;gap:.55rem}
+.lcc{font-size:.68rem;color:var(--txl);font-family:'Cairo',sans-serif}
+.lca{color:var(--gold);font-size:.82rem;transition:transform .28s;display:inline-block}
+.lcb{display:none;padding:1.05rem 1.3rem;background:rgba(10,30,18,.38)}
+body.lm .lcb{background:rgba(195,220,195,.25)}
+.lcb.op{display:block}
+.lch.ac .lca{transform:rotate(180deg)}
+.lgr{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.4rem}
+.ll{display:flex;align-items:center;gap:.42rem;background:var(--card);border:1px solid var(--card-brd);border-radius:7px;padding:.48rem .82rem;text-decoration:none;color:var(--txm);font-size:.79rem;transition:all .2s;cursor:pointer}
+.ll:hover{border-color:rgba(201,168,76,.38);color:var(--gold);background:rgba(201,168,76,.06)}
+
+/* ═══════════════════════════ QUOTES ══════════ */
+#quotes{background:var(--bg)}
+.car{position:relative;overflow:hidden;margin-top:2.3rem}
+.ctr{display:flex;transition:transform .58s cubic-bezier(.25,.46,.45,.94)}
+.qc{min-width:100%;padding:0 .4rem}
+.qi{background:var(--card);border:1px solid var(--card-brd);border-radius:16px;padding:2rem;text-align:center;max-width:700px;margin:0 auto;position:relative}
+.qm{position:absolute;top:.65rem;right:1.3rem;font-family:'Amiri',serif;font-size:6rem;color:var(--gold);opacity:.07;line-height:1}
+.qt{font-family:'Amiri',serif;font-size:1.15rem;color:var(--tx);line-height:2;margin-bottom:1rem;position:relative;z-index:1}
+.qa{color:var(--gold);font-size:.78rem;font-weight:700}
+.cdns{display:flex;justify-content:center;gap:.42rem;margin-top:1rem}
+.cdt{width:6px;height:6px;border-radius:50%;background:rgba(201,168,76,.28);border:none;cursor:pointer;transition:all .28s}
+.cdt.ac{background:var(--gold);width:19px;border-radius:3px}
+.carrs{display:flex;justify-content:center;gap:.65rem;margin-top:.65rem}
+.car2{background:var(--card);border:1px solid var(--card-brd);color:var(--gold);width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:.9rem;transition:all .2s;display:flex;align-items:center;justify-content:center}
+.car2:hover{background:rgba(201,168,76,.14)}
+
+/* ═══════════════════════════ TESTIMONIALS ══════ */
+#testimonials{background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%)}
+.testgr{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:1rem;margin-top:2.3rem}
+.tesc{background:var(--card);border:1px solid var(--card-brd);border-radius:12px;padding:1.25rem;transition:all .28s}
+.tesc:hover{transform:translateY(-3px);border-color:rgba(201,168,76,.32)}
+.teq{color:var(--gold);font-size:1.4rem;font-family:'Amiri',serif;line-height:1;margin-bottom:.4rem}
+.tet{color:var(--txm);font-size:.82rem;line-height:1.8;font-style:italic;margin-bottom:.65rem;min-height:55px}
+.ten{color:var(--goldl);font-size:.74rem;font-weight:700}
+.ten::before{content:'— ';color:var(--gold)}
+
+/* ═══════════════════════════ CONTACT ══════════ */
+#contact{background:var(--bg)}
+.cngr{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:2.3rem}
+@media(max-width:700px){.cngr{grid-template-columns:1fr}}
+.cinf h3{font-family:'Amiri',serif;color:var(--tx);font-size:1.15rem;margin-bottom:1.1rem}
+.cit{display:flex;align-items:flex-start;gap:.8rem;margin-bottom:1.1rem}
+.cic{width:38px;height:38px;border-radius:9px;flex-shrink:0;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.18);display:flex;align-items:center;justify-content:center;font-size:1rem}
+.citxt h4{color:var(--gold);font-size:.78rem;font-weight:700;margin-bottom:.16rem}
+.citxt p{color:var(--txm);font-size:.78rem;line-height:1.6}
+.cfm{display:flex;flex-direction:column;gap:.8rem}
+.cfm h3{font-family:'Amiri',serif;color:var(--tx);font-size:1.15rem}
+.fg input,.fg textarea{width:100%;background:var(--inp-bg);border:1px solid var(--card-brd);border-radius:8px;padding:9px 12px;color:var(--inp-clr);font-family:'Cairo',sans-serif;font-size:.84rem;outline:none;transition:border-color .2s;direction:rtl}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--txl)}
+.fg input:focus,.fg textarea:focus{border-color:var(--gold)}
+.fg textarea{height:100px;resize:none}
+#fmsg{font-size:.78rem;text-align:center;padding:.5rem;border-radius:7px;display:none}
+#fmsg.ok{color:#2d7a2d;background:rgba(45,122,45,.12);border:1px solid rgba(45,122,45,.22)}
+#fmsg.err{color:#a02020;background:rgba(160,32,32,.1);border:1px solid rgba(160,32,32,.18)}
+
+/* ═══════════════════════════ FOOTER ══════════ */
+footer{background:var(--bg2);border-top:1px solid var(--brd);padding:2.2rem 1.8rem 1.5rem;text-align:center}
+.flo{font-family:'Amiri',serif;color:var(--gold);font-size:1.1rem;margin-bottom:.35rem}
+.fsu{color:var(--txl);font-size:.74rem;margin-bottom:1rem}
+.fli{display:flex;justify-content:center;gap:1.3rem;flex-wrap:wrap;margin-bottom:1rem}
+.fli a{color:var(--txl);font-size:.76rem;text-decoration:none;transition:color .2s}
+.fli a:hover{color:var(--gold)}
+.social-row{display:flex;justify-content:center;align-items:center;gap:.9rem;margin-bottom:1rem}
+.social-lbl{color:var(--txm);font-size:.78rem;font-family:'Amiri',serif}
+.soc-ic{width:36px;height:36px;border-radius:50%;border:1px solid var(--card-brd);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .22s;background:var(--card)}
+.soc-ic:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.soc-ic svg{width:17px;height:17px}
+.orn{color:var(--gold);font-size:1rem;opacity:.35;letter-spacing:8px;margin:.6rem 0}
+.fco{color:var(--txl);font-size:.68rem}
+
+/* ═══════════════════════════ MODALS ══════════ */
+.mov{
+  visibility:hidden; opacity:0; pointer-events:none;
+  position:fixed; inset:0; z-index:2000;
+  background:rgba(0,0,0,.72); backdrop-filter:blur(7px);
+  display:flex; align-items:center; justify-content:center; padding:1.2rem;
+  transition:opacity .25s, visibility .25s;
+}
+.mov.visible{
+  visibility:visible; opacity:1; pointer-events:all;
+}
+.mbox{background:var(--bg);border:1px solid rgba(201,168,76,.42);border-radius:16px;padding:1.9rem;max-width:620px;width:100%;position:relative;box-shadow:0 26px 68px rgba(0,0,0,.65);animation:min .33s cubic-bezier(.34,1.56,.64,1);max-height:88vh;overflow-y:auto}
+body.lm .mbox{background:var(--bg2)}
+@keyframes min{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+.mcl{position:absolute;top:.8rem;left:.8rem;background:rgba(128,128,128,.15);border:1px solid var(--card-brd);color:var(--tx);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:all .2s;font-family:sans-serif;line-height:1}
+.mcl:hover{background:rgba(201,168,76,.18);color:var(--gold)}
+.morn{text-align:center;color:var(--gold);font-size:1rem;letter-spacing:7px;margin-bottom:.65rem}
+.mtit{font-family:'Amiri',serif;color:var(--gold);font-size:1.18rem;text-align:center;margin-bottom:.35rem}
+.mdi{width:50%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:.6rem auto 1rem}
+.mbd{color:var(--txm);font-size:.88rem;line-height:1.95;text-align:justify}
+.mbd strong{color:var(--tx)}
+.mtypes{margin-top:.9rem;display:flex;flex-wrap:wrap;gap:.4rem}
+.mtype-tag{background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.24);color:var(--goldl);font-size:.72rem;padding:3px 9px;border-radius:12px}
+
+/* BOOK MODAL */
+.bkmod-cover{width:72px;height:96px;background:linear-gradient(162deg,#1e5c37,#0d3320);border-radius:3px 8px 8px 3px;border:1px solid rgba(201,168,76,.45);display:flex;align-items:center;justify-content:center;font-size:1.4rem;float:left;margin-left:1rem;margin-bottom:.5rem;flex-shrink:0;box-shadow:-4px 4px 14px rgba(0,0,0,.4)}
+body.lm .bkmod-cover{float:right;margin-left:0;margin-right:1rem}
+.bkmod-row{display:flex;align-items:flex-start;gap:1rem;margin-bottom:.7rem}
+.bkmod-info{flex:1}
+.bkmod-info h4{font-family:'Amiri',serif;color:var(--gold);font-size:1.1rem;margin-bottom:.3rem}
+.bkmod-info p{color:var(--txm);font-size:.83rem;line-height:1.8}
+.bkmod-badge{display:inline-block;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.24);color:var(--goldl);font-size:.7rem;padding:2px 9px;border-radius:10px;margin-bottom:.4rem}
+.bkmod-btn{display:inline-flex;align-items:center;gap:.35rem;margin-top:.8rem}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.rv.vis{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+@keyframes fid{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:none}}
+@keyframes fil{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="mn">
+  <a class="nlogo" href="#hero">
+    <svg width="30" height="38" viewBox="0 0 30 38" fill="none">
+      <rect x="2" y="1" width="24" height="36" rx="3" fill="#1a4d30" stroke="#c9a84c" stroke-width=".9"/>
+      <rect x="1" y="2" width="5" height="34" rx="2" fill="#0d3320" stroke="#c9a84c" stroke-width=".6"/>
+      <text x="15" y="12" font-family="serif" font-size="6" fill="#c9a84c" text-anchor="middle">نهج</text>
+      <line x1="8" y1="14" x2="24" y2="14" stroke="#c9a84c" stroke-width=".4" opacity=".5"/>
+      <text x="15" y="21" font-family="serif" font-size="4.8" fill="#c9a84c" text-anchor="middle">اليقين</text>
+      <line x1="8" y1="24" x2="24" y2="24" stroke="#c9a84c" stroke-width=".4" opacity=".5"/>
+      <text x="15" y="31" font-family="serif" font-size="3.6" fill="#c9a84c" text-anchor="middle">مناهج المؤلفين</text>
+    </svg>
+    نهج اليقين
+  </a>
+  <ul class="nlinks">
+    <li><a href="#about">المشروع</a></li>
+    <li><a href="#chapters">المحاور</a></li>
+    <li><a href="#method">المنهج</a></li>
+    <li><a href="#team">الفريق</a></li>
+    <li><a href="#library">المكتبة</a></li>
+    <li><a href="#testimonials">آراء</a></li>
+    <li><a href="#contact">التواصل</a></li>
+  </ul>
+  <button class="ntgl" onclick="toggleMode()" id="tglBtn">☀️ الوضع الفاتح</button>
+</nav>
+
+<!-- ═══ PROJECT MODAL ═══ -->
+<div class="mov" id="pm" onclick="closeModal('pm')">
+  <div class="mbox" onclick="event.stopPropagation()">
+    <button class="mcl" onclick="closeModal('pm')">✕</button>
+    <div class="morn">✦ ◆ ✦</div>
+    <div class="mtit">نهج اليقين في شرح مناهج المؤلفين</div>
+    <div class="mdi"></div>
+    <div class="mbd">
+      يُعد كتاب <strong>نهج اليقين في شرح مناهج المؤلفين</strong> مشروعًا علميًا أكاديميًا يهدف إلى دراسة وتحليل أبرز المؤلفات الإسلامية في مختلف العلوم الشرعية، وفق منهج علمي يجمع بين التأصيل والتحليل والمنهجية الأكاديمية الحديثة.
+      <br><br>
+      ويأتي هذا العمل ثمرةً لمجموعة من المقالات والأبحاث العلمية التي أنجزها طلبة ماستر الشريعة والابتكار الرقمي فوج 2025-2027 بكلية الشريعة والقانون بأيت ملول، تحت إشراف الدكتور عبد الكريم خلفي، في إطار تعزيز البحث العلمي وخدمة التراث الإسلامي.
+    </div>
+    <div class="mdi"></div>
+    <div class="morn">✦ ◆ ✦</div>
+  </div>
+</div>
+
+<!-- ═══ CHAPTER MODAL ═══ -->
+<div class="mov" id="chm" onclick="if(event.target===this)closeModal('chm')">
+  <div class="mbox" onclick="event.stopPropagation()">
+    <button class="mcl" onclick="closeModal('chm')">✕</button>
+    <div class="morn">✦ ◆ ✦</div>
+    <div class="mtit" id="chm-title"></div>
+    <div class="mdi"></div>
+    <div id="chm-icon" style="text-align:center;font-size:2.5rem;margin-bottom:.7rem"></div>
+    <div class="mbd" id="chm-body"></div>
+    <div class="mtypes" id="chm-types"></div>
+    <div class="mdi"></div>
+    <div class="morn">✦ ◆ ✦</div>
+  </div>
+</div>
+
+<!-- ═══ BOOK MODAL ═══ -->
+<div class="mov" id="bkm" onclick="closeModal('bkm')">
+  <div class="mbox" onclick="event.stopPropagation()" style="max-width:520px">
+    <button class="mcl" onclick="closeModal('bkm')">✕</button>
+    <div class="morn">✦ ◆ ✦</div>
+    <div style="display:flex;gap:1rem;align-items:flex-start;margin-bottom:.9rem">
+      <img id="bkm-cover-img" src="image/book_aqeeda.svg" alt="غلاف الكتاب"
+           style="width:82px;height:112px;object-fit:cover;border-radius:3px 8px 8px 3px;
+                  border:1px solid rgba(201,168,76,.4);box-shadow:-4px 5px 14px rgba(0,0,0,.4);
+                  flex-shrink:0">
+      <div style="flex:1">
+        <div class="bkmod-badge" id="bkm-cat" style="margin-bottom:.4rem"></div>
+        <h4 id="bkm-title" style="font-family:'Amiri',serif;color:var(--gold);font-size:1rem;margin-bottom:.3rem"></h4>
+        <p id="bkm-author" style="color:var(--txm);font-size:.82rem"></p>
+      </div>
+    </div>
+    <div class="mbd" id="bkm-body" style="font-size:.85rem;line-height:1.85"></div>
+    <div style="display:flex;gap:.7rem;margin-top:1rem;flex-wrap:wrap">
+      <a href="https://www.google.com/" target="_blank" class="bp" style="font-size:.82rem">⬇ تحميل الكتاب</a>
+      <button class="bo" onclick="closeModal('bkm')" style="font-size:.82rem">إغلاق</button>
+    </div>
+    <div class="mdi"></div>
+    <div class="morn">✦ ◆ ✦</div>
+  </div>
+</div>
+
+<!-- ═══ FLOATING BADGE ═══ -->
+<div class="fbadge" onclick="openModal('pm')" title="التعرف على المشروع">
+  <div class="fbi">
+    <div class="fbc">نهج</div>
+    <div class="fbt">نهج اليقين<br>اضغط للتعرف</div>
+  </div>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="gpat"></div>
+  <div class="orb o1"></div><div class="orb o2"></div>
+  <div class="hc">
+    <div>
+      <div class="hbdg">✦ مشروع أكاديمي علمي متميز ✦</div>
+      <h1 class="htit"><span>نهج اليقين</span><br>في شرح مناهج المؤلفين</h1>
+      <p class="hsub">دراسات تحليلية في مناهج التأليف الإسلامي وخدمة العلماء للتراث الشرعي</p>
+      <div class="hmeta">
+        <span>📚 إعداد طلبة ماستر الشريعة والابتكار الرقمي – فوج 2025/2027</span>
+        <span>🏛️ كلية الشريعة والقانون – أيت ملول</span>
+        <span>🎓 إشراف: الدكتور عبد الكريم خلفي</span>
+      </div>
+      <div class="hbtns">
+        <button class="bp" onclick="openModal('pm')">📋 التعرف على المشروع</button>
+        <a href="#chapters" class="bo">📖 تصفح الفصول</a>
+        <a href="#team" class="bo">👥 فريق العمل</a>
+      </div>
+    </div>
+    <div class="bv">
+      <div class="book-img-wrap" onclick="openModal('pm')" title="انقر للتعرف على المشروع">
+        <img src="image/cover.png" alt="غلاف كتاب نهج اليقين" class="book-img-real">
+        <div class="book-img-shadow"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+  <div class="mxw">
+    <div class="rv"><div class="slbl">التعريف بالمشروع</div><h2 class="stit">مشروع علمي يخدم <span>التراث الإسلامي</span></h2></div>
+    <div class="agr">
+      <div>
+        <div class="ac rv d1"><div style="font-size:1.6rem;margin-bottom:.55rem">💡</div><h3>فكرة الكتاب</h3><p>مشروع أكاديمي جماعي يهدف إلى تجميع مقالات علمية رصينة تُعنى بدراسة وتحليل أبرز المؤلفات الإسلامية الكلاسيكية في شتى العلوم الشرعية واللغوية.</p></div>
+        <div class="ac rv d2"><div style="font-size:1.6rem;margin-bottom:.55rem">🎯</div><h3>أهداف المشروع</h3><ul class="ali"><li>التعريف بالمؤلفين وحياتهم العلمية</li><li>دراسة موضوعات الكتب وأسباب تأليفها</li><li>بيان المنهجية العلمية للمؤلَّفات</li><li>إبراز مزايا الكتب وخصائصها العلمية</li><li>رصد جهود العلماء في خدمة التراث</li></ul></div>
+      </div>
+      <div>
+        <div class="ac rv d3"><div style="font-size:1.6rem;margin-bottom:.55rem">📜</div><h3>أهمية التراث الإسلامي</h3><p>يُمثل التراث الإسلامي ثروة حضارية إنسانية لا تُقدَّر، وخدمته درسًا وتحقيقًا وشرحًا من أجلّ ما يُقدّمه الباحثون المسلمون لأمتهم وللإنسانية جمعاء.</p></div>
+        <div class="ac rv d4"><div style="font-size:1.6rem;margin-bottom:.55rem">⚗️</div><h3>المنهجية العلمية</h3><ul class="ali"><li>المنهج الاستقرائي لرصد المعطيات</li><li>المنهج التحليلي لدراسة المضامين</li><li>المنهج النقدي لتقييم الآراء</li><li>المنهج التاريخي للسياق الحضاري</li><li>توثيق علمي دقيق للمصادر</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CHAPTERS ═══ -->
+<section id="chapters">
+  <div class="mxw">
+    <div class="tc rv"><div class="slbl">محاور الكتاب</div><h2 class="stit">أبواب <span>العلوم الشرعية</span></h2><p class="sdsc">يتناول الكتاب شروح المؤلفات الإسلامية في ثمانية محاور علمية رئيسية</p></div>
+    <div class="cgr">
+      <div class="cc rv d1">
+        <div class="cci">🕋 </div>
+        <h3>كتب العقيدة الإسلامية</h3>
+        <p>دراسة أسس الدين الإسلامي من توحيد وصفات وعقائد ونبوات.</p>
+        <button class="cbt" onclick="showCh(0)">كتب العقيدة ←</button>
+      </div>
+      <div class="cc rv d2">
+        <div class="cci">📖</div>
+        <h3>كتب التفسير وعلوم القرآن</h3>
+        <p>مناهج المفسرين في بيان كلام الله تعالى وعلوم القرآن.</p>
+        <button class="cbt" onclick="showCh(1)">كتب التفسير ←</button>
+      </div>
+      <div class="cc rv d3">
+        <div class="cci">ﷺ  </div>
+        <h3>كتب علوم الحديث النبوي</h3>
+        <p>حفظ سنة النبي ﷺ وتصنيف الأحاديث ودراسة علومها.</p>
+        <button class="cbt" onclick="showCh(2)">كتب الحديث  ←</button>
+      </div>
+      <div class="cc rv d1">
+        <div class="cci">⚖️</div>
+        <h3>كتب الفقه وأصول الفقه</h3>
+        <p>الأحكام الشرعية في المذاهب الأربعة وأصول الاستنباط.</p>
+        <button class="cbt" onclick="showCh(3)">كتب الفقه  ←</button>
+      </div>
+      <div class="cc rv d2">
+        <div class="cci">🌙</div>
+        <h3>كتب السيرة النبوية الشريفة</h3>
+        <p>حياة النبي ﷺ وغزواته وشمائله وخصائصه المحمدية.</p>
+        <button class="cbt" onclick="showCh(4)">كتب السيرة النبوية  ←</button>
+      </div>
+      <div class="cc rv d3">
+        <div class="cci">💚</div>
+        <h3>كتب التزكية والأخلاق الإسلامية</h3>
+        <p>تزكية النفس وتهذيب الأخلاق والسلوك الروحي في الإسلام.</p>
+        <button class="cbt" onclick="showCh(5)">كتب التزكية  ←</button>
+      </div>
+      <div class="cc rv d1">
+        <div class="cci">✒️</div>
+        <h3>كتب علوم اللغة العربية</h3>
+        <p>النحو والبلاغة والمعاجم وعلوم اللغة في خدمة الشريعة.</p>
+        <button class="cbt" onclick="showCh(6)">كتب اللغة العربية  ←</button>
+      </div>
+      <div class="cc rv d2">
+        <div class="cci">🏺</div>
+        <h3>كتب التاريخ الإسلامي والحضارة</h3>
+        <p>تاريخ الإسلام والحضارة وتراجم الأعلام والطبقات.</p>
+        <button class="cbt" onclick="showCh(7)">كتب التاريخ  ←</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ METHODOLOGY ═══ -->
+<section id="method">
+  <div class="mxw">
+    <div class="rv"><div class="slbl">المنهج العلمي</div><h2 class="stit">خطوات <span>دراسة الكتاب</span></h2><p class="sdsc">منهجية علمية متكاملة تضمن دراسة شاملة ودقيقة لكل مؤلَّف</p></div>
+    <div class="tl">
+      <div class="ti rv d1"><div class="td">👤</div><div class="tco"><h4>أولاً: التعريف بالمؤلف</h4><p>اسمه ونسبه، مولده ووفاته، شيوخه وتلاميذه، مذهبه العلمي، أبرز مؤلفاته.</p></div></div>
+      <div class="ti rv d2"><div class="td">📚</div><div class="tco"><h4>ثانياً: موضوع الكتاب</h4><p>المجال العلمي للكتاب، القضايا التي يعالجها، أهميته ومكانته في الفكر الإسلامي.</p></div></div>
+      <div class="ti rv d3"><div class="td">🔍</div><div class="tco"><h4>ثالثاً: سبب التأليف</h4><p>الدافع العلمي للتأليف، الظروف التاريخية، الإشكالات التي عالجها المؤلف.</p></div></div>
+      <div class="ti rv d1"><div class="td">🗂️</div><div class="tco"><h4>رابعاً: طريقة ترتيب الكتاب</h4><p>منهج التقسيم والتبويب، طريقة عرض المسائل، استخدام الأدلة الشرعية.</p></div></div>
+      <div class="ti rv d2"><div class="td">⭐</div><div class="tco"><h4>خامساً: أبرز مزايا الكتاب</h4><p>التجديد العلمي، قوة التحرير، جمع الأقوال وحسن الترتيب، خصائص الأسلوب.</p></div></div>
+      <div class="ti rv d3"><div class="td">🏛️</div><div class="tco"><h4>سادساً: خدمة العلماء للكتاب</h4><p>الشروح والحواشي، التحقيقات العلمية، النظم والاختصارات، والدراسات الأكاديمية.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS ═══ -->
+<section id="stats">
+  <div class="mxw tc">
+    <div class="rv"><div class="slbl">في أرقام</div><h2 class="stit">المشروع <span>بالأرقام</span></h2></div>
+    <div class="sgr">
+      <div class="sc2 rv d1"><div class="sn" data-t="240">0</div><div class="slb">كتاباً في المكتبة</div></div>
+      <div class="sc2 rv d2"><div class="sn" data-t="40">0</div><div class="slb">باحثاً وباحثة</div></div>
+      <div class="sc2 rv d3"><div class="sn" data-t="8">0</div><div class="slb">علوم شرعية</div></div>
+      <div class="sc2 rv d4"><div class="sn" data-t="6">0</div><div class="slb">محاور منهجية</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TEAM ═══ -->
+<section id="team">
+  <div class="mxw">
+    <div class="tc rv"><div class="slbl">فريق العمل</div><h2 class="stit">العقول <span>المبدعة</span></h2><p class="sdsc">طلبة ماستر الشريعة والابتكار الرقمي – فوج 2025/2027</p></div>
+    <div class="tgr">
+      <div class="tcrd sup rv" style="grid-column:1/-1;max-width:295px;margin:0 auto"><div class="tav" style="margin:0 auto .65rem">د</div><div class="sbdg">المشرف العلمي</div><div class="tnm" style="font-size:.95rem">الدكتور عبد الكريم خلفي</div><div class="trl">أستاذ الحديث وعلومه بكلية الشريعة والقانون- جامعة ابن زهر</div><div class="tdsc">مشرف المشروع العلمي </div></div>
+            <script>
+/* ════════════════════════════════════════════════
+   قائمة أسماء الباحثين — عدّل الأسماء هنا مباشرة
+   ════════════════════════════════════════════════ */
+const teamNames = [
+  /* 01 */ 'عمر خلود',
+  /* 02 */ 'مبارك عواد',
+  /* 03 */ 'بوبكر ميس',
+  /* 04 */ 'محمد الأمين أشن',
+  /* 05 */ 'بدر الريمش',
+  /* 06 */ 'الاسم الشخصي العائلي',
+  /* 07 */ 'الاسم الشخصي العائلي',
+  /* 08 */ 'الاسم الشخصي العائلي',
+  /* 09 */ 'الاسم الشخصي العائلي',
+  /* 10 */ 'الاسم الشخصي العائلي',
+  /* 11 */ 'الاسم الشخصي العائلي',
+  /* 12 */ 'الاسم الشخصي العائلي',
+  /* 13 */ 'الاسم الشخصي العائلي',
+  /* 14 */ 'الاسم الشخصي العائلي',
+  /* 15 */ 'الاسم الشخصي العائلي',
+  /* 16 */ 'الاسم الشخصي العائلي',
+  /* 17 */ 'الاسم الشخصي العائلي',
+  /* 18 */ 'الاسم الشخصي العائلي',
+  /* 19 */ 'الاسم الشخصي العائلي',
+  /* 20 */ 'الاسم الشخصي العائلي',
+  /* 21 */ 'الاسم الشخصي العائلي',
+  /* 22 */ 'الاسم الشخصي العائلي',
+  /* 23 */ 'الاسم الشخصي العائلي',
+  /* 24 */ 'الاسم الشخصي العائلي',
+  /* 25 */ 'الاسم الشخصي العائلي',
+  /* 26 */ 'الاسم الشخصي العائلي',
+  /* 27 */ 'الاسم الشخصي العائلي',
+  /* 28 */ 'الاسم الشخصي العائلي',
+  /* 29 */ 'الاسم الشخصي العائلي',
+  /* 30 */ 'الاسم الشخصي العائلي',
+  /* 31 */ 'الاسم الشخصي العائلي',
+  /* 32 */ 'الاسم الشخصي العائلي',
+  /* 33 */ 'الاسم الشخصي العائلي',
+  /* 34 */ 'الاسم الشخصي العائلي',
+  /* 35 */ 'الاسم الشخصي العائلي',
+  /* 36 */ 'الاسم الشخصي العائلي',
+  /* 37 */ 'الاسم الشخصي العائلي',
+  /* 38 */ 'الاسم الشخصي العائلي',
+  /* 39 */ 'الاسم الشخصي العائلي',
+  /* 40 */ 'الاسم الشخصي العائلي',
+];
+teamNames.forEach((name, idx) => {
+  const num = idx + 1;
+  document.write(
+    '<div class="tcrd rv">' +
+      '<div class="tav">' + num + '</div>' +
+      '<div class="tnm">' + name + '</div>' +
+      '<div class="trl">\u0637\u0627\u0644\u0628 \u0645\u0627\u0633\u062a\u0631 \u2013 \u062a\u062e\u0635\u0635 \u0627\u0644\u0634\u0631\u064a\u0639\u0629</div>' +
+    '</div>'
+  );
+});
+      </script>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LIBRARY ═══ -->
+<section id="library">
+  <div class="mxw">
+    <div class="tc rv"><div class="slbl">المكتبة الرقمية</div><h2 class="stit">المكتبة <span>التفاعلية</span></h2><p class="sdsc">8 أقسام × 30 كتاباً – انقر على أي كتاب لمعرفة تفاصيله</p></div>
+    <div class="sbar rv">
+      <input type="text" id="lsin" placeholder="ابحث عن كتاب..." oninput="doSearch()">
+      <button onclick="doSearch()">🔍 بحث</button>
+    </div>
+    <div id="lnf">📚 كتاب لا يوجد بعد بالمشروع</div>
+    <div id="libg" style="margin-top:.9rem"></div>
+  </div>
+</section>
+
+<!-- ═══ QUOTES ═══ -->
+<section id="quotes">
+  <div class="mxw">
+    <div class="tc rv"><div class="slbl">اقتباسات علمية</div><h2 class="stit">من <span>درر العلماء</span></h2></div>
+    <div class="car" id="quotesCar" style="opacity:1">
+      <div class="ctr" id="ctr"></div>
+      <div class="cdns" id="cdn"></div>
+      <div class="carrs"><button class="car2" onclick="mcar(-1)">→</button><button class="car2" onclick="mcar(1)">←</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section id="testimonials">
+  <div class="mxw">
+    <div class="tc rv"><div class="slbl">آراء الزوار</div><h2 class="stit">قالوا عن <span>الموقع</span></h2><p class="sdsc">شهادات وانطباعات الزوار والمهتمين بالتراث الإسلامي</p></div>
+    <div class="testgr" id="tg"></div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
+  <div class="mxw">
+    <div class="tc rv"><div class="slbl">التواصل معنا</div><h2 class="stit">تواصل مع <span>الفريق</span></h2></div>
+    <div class="cngr">
+      <div class="cinf rv d1">
+        <h3>معلومات التواصل</h3>
+        <div class="cit"><div class="cic">🏛️</div><div class="citxt"><h4>الجهة المؤسسية</h4><p>كلية الشريعة والقانون – أيت ملول<br>جامعة ابن زهر – أكادير، المغرب</p></div></div>
+        <div class="cit"><div class="cic">📧</div><div class="citxt"><h4>البريد الإلكتروني</h4><p>apptice.educ@gmail.com</p></div></div>
+        <div class="cit"><div class="cic">🎓</div><div class="citxt"><h4>البرنامج الأكاديمي</h4><p>ماستر الشريعة والابتكار الرقمي<br>فوج 2025-2027</p></div></div>
+        <div class="cit"><div class="cic">👨‍🏫</div><div class="citxt"><h4>المشرف العلمي</h4><p>الدكتور عبد الكريم خلفي</p></div></div>
+      </div>
+      <div class="rv d2">
+        <div class="cfm">
+          <h3>راسلنا مباشرة</h3>
+          <div class="fg"><input type="text" id="fn" placeholder="الاسم الكامل *"></div>
+          <div class="fg"><input type="email" id="fe" placeholder="بريدك الإلكتروني" dir="ltr"></div>
+          <div class="fg"><input type="text" id="fs" placeholder="موضوع الرسالة *"></div>
+          <div class="fg"><textarea id="fm" placeholder="نص رسالتك... *"></textarea></div>
+          <button class="bp" style="width:100%;justify-content:center" onclick="sendMsg()" id="sendbtn">📨 إرسال الرسالة</button>
+          <div id="fmsg"></div>
+          <p style="color:var(--txl);font-size:.72rem;text-align:center">يتم إرسال الرسالة مباشرة إلى apptice.educ@gmail.com</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="flo">✦ نهج اليقين في شرح مناهج المؤلفين ✦</div>
+  <div class="fsu">مشروع أكاديمي علمي – كلية الشريعة والقانون – أيت ملول – فوج 2025/2027</div>
+  <div class="fli">
+    <a href="#hero">الرئيسية</a><a href="#about">المشروع</a><a href="#chapters">المحاور</a>
+    <a href="#method">المنهج</a><a href="#team">الفريق</a><a href="#library">المكتبة</a>
+    <a href="#quotes">الاقتباسات</a><a href="#testimonials">آراء</a><a href="#contact">التواصل</a>
+  </div>
+  <!-- SOCIAL -->
+  <div class="social-row">
+    <span class="social-lbl">تابعونا :</span>
+    <!-- Twitter / X -->
+    <a class="soc-ic" href="https://twitter.com/rabadr16" target="_blank" title="تويتر / X">
+      <svg viewBox="0 0 24 24" fill="var(--gold)"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.73-8.835L1.254 2.25H8.08l4.259 5.63 5.905-5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    </a>
+    <!-- Facebook -->
+    <a class="soc-ic" href="https://facebook.com/bibliotice" target="_blank" title="فيسبوك">
+      <svg viewBox="0 0 24 24" fill="var(--gold)"><path d="M24 12.073C24 5.406 18.627 0 12 0S0 5.406 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.883v2.27h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+    </a>
+    <!-- YouTube -->
+    <a class="soc-ic" href="https://youtube.com/badrweb" target="_blank" title="يوتيوب">
+      <svg viewBox="0 0 24 24" fill="var(--gold)"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+    </a>
+  </div>
+  <div class="orn">✦ ◆ ✦ ◆ ✦</div>
+  <div class="fco">© 2025 جميع الحقوق محفوظة – طلبة ماستر الشريعة والابتكار الرقمي</div>
+</footer>
+
+<!-- ═══════════════════════════════ JAVASCRIPT ═════════════════════════════ -->
+<script>
+/* ─── MODAL HELPERS ─────────────────── */
+function openModal(id){
+  document.getElementById(id).classList.add('visible');
+  document.body.style.overflow='hidden';
+}
+function closeModal(id){
+  document.getElementById(id).classList.remove('visible');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    document.querySelectorAll('.mov.visible').forEach(function(m){
+      m.classList.remove('visible');
+    });
+    document.body.style.overflow='';
+  }
+});
+
+/* ─── DARK / LIGHT MODE ─────────────── */
+function toggleMode(){
+  document.body.classList.toggle('lm');
+  const lm = document.body.classList.contains('lm');
+  document.getElementById('tglBtn').textContent = lm ? '🌙 الوضع الداكن' : '☀️ الوضع الفاتح';
+}
+
+/* ─── NAV SCROLL ────────────────────── */
+window.addEventListener('scroll',()=>document.getElementById('mn').classList.toggle('sc',scrollY>50));
+
+/* ─── REVEAL ────────────────────────── */
+const obs=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('vis'); }),{threshold:.07,rootMargin:'0px 0px -32px 0px'});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+
+/* ─── COUNTERS ──────────────────────── */
+const cobs=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  const el=e.target,t=+el.dataset.t; let cur=0; const st=t/60;
+  const tm=setInterval(()=>{ cur+=st; if(cur>=t){el.textContent=t+'+';clearInterval(tm);}else el.textContent=Math.floor(cur); },22);
+  cobs.unobserve(el);
+}),{threshold:.5});
+document.querySelectorAll('.sn[data-t]').forEach(el=>cobs.observe(el));
+
+/* ─── CHAPTERS MODAL ─────────────────── */
+var CH = [
+  { icon:'🕋', name:'كتب العقيدة الإسلامية',
+    intro:'تتناول كتب العقيدة الإسلامية الجانبَ العقدي الذي هو أساس الدين وركيزته، إذ تبحث في توحيد الله وصفاته وأفعاله، وفي الإيمان بالملائكة والكتب والرسل واليوم الآخر والقضاء والقدر. وقد أبدع علماء الإسلام في التأليف في هذا الباب شرحاً وتأصيلاً وردّاً على الشبهات.',
+    books:['العقيدة الطحاوية — الإمام أبو جعفر الطحاوي','لمعة الاعتقاد — الإمام ابن قدامة المقدسي','العقيدة الواسطية — شيخ الإسلام ابن تيمية','الإبانة عن أصول الديانة — الإمام أبو الحسن الأشعري','شرح العقيدة الطحاوية — ابن أبي العز الحنفي','الإرشاد — إمام الحرمين الجويني','شرح السنة — الإمام البغوي'],
+    types:['متون العقيدة السلفية','شروح الأسماء والصفات','كتب الردود العقدية','مصنفات الملل والنحل','متون العقيدة الأشعرية','كتب أصول الإيمان'] },
+  { icon:'📖', name:'كتب التفسير وعلوم القرآن',
+    intro:'تتناول كتب التفسير بيانَ معاني القرآن الكريم وكشف مقاصده وأحكامه، وهي من أشرف العلوم الإسلامية إذ موضوعها كلام الله تعالى. وقد تنوعت مناهج المفسرين بين التفسير بالمأثور والتفسير بالرأي والتفسير الموضوعي.',
+    books:['جامع البيان عن تأويل آي القرآن — الإمام ابن جرير الطبري','تفسير القرآن العظيم — الإمام الحافظ ابن كثير','الجامع لأحكام القرآن — الإمام القرطبي','الكشاف — الإمام الزمخشري','روح المعاني — الإمام الألوسي','البرهان في علوم القرآن — الإمام الزركشي','الإتقان في علوم القرآن — الإمام السيوطي'],
+    types:['تفاسير بالمأثور','تفاسير فقهية','تفاسير لغوية وبيانية','تفاسير موضوعية','تفاسير إشارية','كتب علوم القرآن'] },
+  { icon:'ﷺ ', name:'كتب علوم الحديث النبوي',
+    intro:'تتناول كتب الحديث النبوي حفظَ سنة النبي ﷺ القولية والفعلية والتقريرية، وهي المصدر الثاني للتشريع الإسلامي. وقد بلغت المكتبة الحديثية قمة الدقة والتنظيم في رواية الحديث وتصنيفه ونقده ودراسة رجاله.',
+    books:['الجامع المسند الصحيح — الإمام البخاري','صحيح مسلم — الإمام مسلم بن الحجاج','الموطأ — الإمام مالك بن أنس','سنن أبي داود — الإمام أبو داود السجستاني','الجامع الكبير — الإمام الترمذي','نخبة الفكر — الإمام ابن حجر العسقلاني','شرح النووي على صحيح مسلم — الإمام النووي'],
+    types:['الصحاح والكتب الستة','المسانيد والمعاجم','كتب العلل والرجال','الزوائد والمستدركات','شروح الحديث الكبرى','كتب مصطلح الحديث'] },
+  { icon:'⚖️', name:'كتب الفقه وأصول الفقه',
+    intro:'تتناول كتب الفقه الإسلامي الأحكامَ الشرعية العملية المستنبطة من الكتاب والسنة في شتى مجالات الحياة. وقد تنوعت المصنفات الفقهية بتنوع المذاهب الأربعة، فيما تتناول كتب الأصول القواعدَ التي يسير عليها الفقهاء في الاستنباط.',
+    books:['المدونة الكبرى — الإمام مالك وسحنون','الأم — الإمام محمد بن إدريس الشافعي','المغني — الإمام ابن قدامة المقدسي','بداية المجتهد — ابن رشد الحفيد','الهداية — الإمام المرغيناني الحنفي','الموافقات في أصول الشريعة — الإمام الشاطبي','المستصفى من علم الأصول — الإمام الغزالي'],
+    types:['متون الفقه الحنفي','مصنفات المذهب المالكي','كتب الفقه الشافعي','مؤلفات الفقه الحنبلي','كتب أصول الفقه','القواعد والفروق الفقهية'] },
+  { icon:'🌙', name:'كتب السيرة النبوية الشريفة',
+    intro:'تتناول كتب السيرة النبوية حياةَ النبي ﷺ من مولده إلى وفاته، شاملةً غزواته وسراياه ومعاملاته وخُلُقه وصفاته ﷺ. وتُعدّ هذه الكتب من أهم المصادر لفهم التطبيق العملي للإسلام وطريقة تربية الصحابة الكرام.',
+    books:['السيرة النبوية — ابن هشام (عن ابن إسحاق)','الرحيق المختوم — الشيخ صفي الرحمن المباركفوري','زاد المعاد في هدي خير العباد — الإمام ابن القيم','الشمائل المحمدية — الإمام الترمذي','دلائل النبوة — الإمام البيهقي','السيرة الحلبية — برهان الدين الحلبي','فقه السيرة النبوية — الشيخ محمد الغزالي'],
+    types:['كتب المغازي والسير الكبرى','كتب الشمائل المحمدية','مؤلفات دلائل النبوة','كتب الخصائص النبوية','السير الحديثة والمعاصرة','كتب أعلام النبوة'] },
+  { icon:'💚', name:'كتب التزكية والأخلاق الإسلامية',
+    intro:'تتناول كتب التزكية تهذيبَ النفس وتصفيتها من الرذائل وتحليتها بالفضائل، وهي باب عظيم يجمع بين العلم والعمل. وقد أبدع علماء الإسلام في التأليف في هذا الميدان الذي يعالج الجانب الروحي والأخلاقي في حياة المسلم.',
+    books:['إحياء علوم الدين — الإمام أبو حامد الغزالي','منهاج القاصدين — الإمام ابن الجوزي','رياض الصالحين — الإمام النووي','مدارج السالكين — الإمام ابن القيم الجوزية','الرسالة القشيرية — الإمام القشيري','حلية الأولياء — الإمام أبو نعيم الأصبهاني','جامع العلوم والحكم — الإمام ابن رجب الحنبلي'],
+    types:['كتب الزهد والرقائق','مصنفات الآداب الشرعية','كتب الأخلاق الإسلامية','مؤلفات التصوف السني','كتب المواعظ والرقائق','كتب محاسبة النفس'] },
+  { icon:'✒️', name:'كتب علوم اللغة العربية',
+    intro:'تتناول كتب اللغة العربية علومَ النحو والصرف والبلاغة والمعاجم والأدب، وهي آلة لا غنى عنها لفهم القرآن الكريم والسنة النبوية. وقد أسهم علماء المسلمون إسهاماً رائداً في تأسيس هذه العلوم وتدوينها حفاظاً على اللسان العربي.',
+    books:['الكتاب — سيبويه (عمرو بن عثمان بن قنبر)','ألفية ابن مالك مع شرح ابن عقيل','مغني اللبيب عن كتب الأعاريب — ابن هشام الأنصاري','لسان العرب — ابن منظور الأفريقي','دلائل الإعجاز — الإمام عبد القاهر الجرجاني','البيان والتبيين — الجاحظ','شرح المفصل — ابن يعيش النحوي'],
+    types:['كتب النحو والصرف','مصنفات البلاغة والبيان','المعاجم اللغوية الكبرى','كتب الأدب والنقد','كتب فقه اللغة','المتون والشروح النحوية'] },
+  { icon:'🏺', name:'كتب التاريخ الإسلامي والحضارة',
+    intro:'تتناول كتب التاريخ الإسلامي سردَ الأحداث والوقائع منذ فجر الإسلام حتى العصور المتأخرة، شاملةً التاريخ السياسي والحضاري والعلمي. كما تضم كتب التراجم والطبقات التي وثّقت أعلام الأمة الإسلامية وإسهاماتهم.',
+    books:['تاريخ الرسل والملوك — الإمام ابن جرير الطبري','مقدمة ابن خلدون — ولي الدين ابن خلدون','البداية والنهاية — الإمام الحافظ ابن كثير','وفيات الأعيان وأنباء أبناء الزمان — ابن خلكان','سير أعلام النبلاء — الإمام الذهبي','الكامل في التاريخ — ابن الأثير الجزري','تاريخ بغداد — الإمام الخطيب البغدادي'],
+    types:['كتب التاريخ العام والسير','طبقات العلماء والمحدثين','كتب التراجم والوفيات','مصنفات الحضارة الإسلامية','كتب الجغرافيا التاريخية','تاريخ الدول والأسر'] }
+];
+
+function showCh(idx) {
+  var c = CH[idx];
+  if (!c) return;
+  var bHtml = '<ul style="list-style:none;padding:0;margin-top:.6rem">';
+  for (var i = 0; i < c.books.length; i++) {
+    bHtml += '<li style="padding:.38rem 0;border-bottom:1px solid rgba(128,128,128,.1);color:var(--txm);font-size:.87rem;display:flex;align-items:flex-start;gap:.45rem">'
+           + '<span style="color:var(--gold);flex-shrink:0;margin-top:1px">◆</span>'
+           + c.books[i] + '</li>';
+  }
+  bHtml += '</ul>';
+  var tHtml = '';
+  for (var j = 0; j < c.types.length; j++) {
+    tHtml += '<span class="mtype-tag">' + c.types[j] + '</span>';
+  }
+  document.getElementById('chm-title').textContent = c.name;
+  document.getElementById('chm-icon').textContent  = c.icon;
+  document.getElementById('chm-body').innerHTML =
+    '<p style="color:var(--txm);line-height:1.95;font-size:.9rem;margin-bottom:.9rem">' + c.intro + '</p>'
+    + '<p style="color:var(--gold);font-family:Amiri,serif;font-size:1rem;margin-bottom:.2rem">✦ من أبرز المؤلفات في هذا الباب:</p>'
+    + bHtml;
+  document.getElementById('chm-types').innerHTML = tHtml;
+  openModal('chm');
+}
+
+/* chapter cards: static HTML above */
+
+/* ─── LIBRARY ───────────────────────── */
+const cats=[
+  {icon:'🕋',name:'كتب العقيدة',      field:'علم العقيدة والتوحيد',      img:'image/book_aqeeda.svg'},
+  {icon:'ﷺ',name:'كتب الحديث',       field:'علوم الحديث النبوي',        img:'image/book_hadith.svg'},
+  {icon:'⚖️',name:'كتب الفقه',        field:'الفقه الإسلامي وأصوله',     img:'image/book_fiqh.svg'},
+  {icon:'📖',name:'كتب التفسير',      field:'علوم القرآن والتفسير',      img:'image/book_tafsir.svg'},
+  {icon:'🌙',name:'كتب السيرة النبوية',field:'السيرة النبوية الشريفة',    img:'image/book_sira.svg'},
+  {icon:'💚',name:'كتب التزكية',      field:'التزكية والأخلاق الإسلامية',img:'image/book_tazkia.svg'},
+  {icon:'✒️',name:'كتب اللغة العربية',field:'علوم اللغة العربية',        img:'image/book_lugha.svg'},
+  {icon:'🏺',name:'كتب التاريخ',      field:'التاريخ الإسلامي والحضارة', img:'image/book_tarikh.svg'}
+];
+const nums=['الأول','الثاني','الثالث','الرابع','الخامس','السادس','السابع','الثامن','التاسع','العاشر','الحادي عشر','الثاني عشر','الثالث عشر','الرابع عشر','الخامس عشر','السادس عشر','السابع عشر','الثامن عشر','التاسع عشر','العشرون','الحادي والعشرون','الثاني والعشرون','الثالث والعشرون','الرابع والعشرون','الخامس والعشرون','السادس والعشرون','السابع والعشرون','الثامن والعشرون','التاسع والعشرون','الثلاثون'];
+
+(function buildLib(){
+  const g=document.getElementById('libg');
+  g.innerHTML=cats.map((c,ci)=>`
+<div class="lcat rv" id="lcat${ci}">
+  <div class="lch" onclick="toggleCat(this)">
+    <div class="lctit">${c.icon} ${c.name} <span class="lcc">30 كتاباً</span></div>
+    <span class="lca">▼</span>
+  </div>
+  <div class="lcb">
+    <div class="lgr">${nums.map((n,ni)=>`
+<div class="ll" onclick="openBookModal(${ci},${ni})" data-name="الكتاب ${n}"><span>📥</span> الكتاب ${n}</div>`).join('')}
+    </div>
+  </div>
+</div>`).join('');
+  document.querySelectorAll('.lcat.rv').forEach(el=>obs.observe(el));
+})();
+
+function toggleCat(h){
+  const b=h.nextElementSibling, open=b.classList.contains('op');
+  document.querySelectorAll('.lcb').forEach(x=>x.classList.remove('op'));
+  document.querySelectorAll('.lch').forEach(x=>x.classList.remove('ac'));
+  if(!open){b.classList.add('op');h.classList.add('ac');}
+}
+
+function openBookModal(ci, ni){
+  const cat=cats[ci], bname=`الكتاب ${nums[ni]}`;
+  // update book cover image
+  const coverEl = document.getElementById('bkm-cover-img');
+  if(coverEl){ coverEl.src = cat.img; coverEl.alt = cat.name; }
+  document.getElementById('bkm-cat').textContent   = cat.field;
+  document.getElementById('bkm-title').textContent = `${bname} – ${cat.name}`;
+  document.getElementById('bkm-author').innerHTML  =
+    `<strong style="color:var(--goldl)">المؤلف:</strong> الاسم الشخصي والعائلي للمؤلف`;
+  document.getElementById('bkm-body').innerHTML =
+    `<p style="margin-bottom:.5rem"><strong>المجال الشرعي:</strong> ${cat.field}</p>
+     <p style="margin-bottom:.5rem"><strong>موضوع الكتاب:</strong> يتناول هذا الكتاب أهم المسائل والقضايا المتعلقة بـ${cat.name.replace('كتب ','')}، ويُعدّ من المراجع المعتمدة في هذا الفن عند أهل العلم.</p>
+     <p style="margin-bottom:.5rem"><strong>سبب التأليف:</strong> ألّفه مؤلفه استجابةً لحاجة العصر، مع الرغبة في خدمة طلبة العلم وتقريب المادة العلمية إليهم.</p>
+     <p style="margin-bottom:.5rem"><strong>أبرز مزاياه:</strong> يتميز بجمع المتفرق وحسن التبويب وقوة التحرير وسهولة الأسلوب مع الاستيعاب.</p>
+     <p><strong>خدمة العلماء له:</strong> حظي باهتمام بالغ من العلماء شرحاً وتعليقاً وتحقيقاً.</p>`;
+  openModal('bkm');
+}
+
+function doSearch(){
+  const q=document.getElementById('lsin').value.trim();
+  const nf=document.getElementById('lnf');
+  if(!q){
+    document.querySelectorAll('.lcat').forEach(c=>{c.style.display='';c.querySelectorAll('.ll').forEach(l=>l.style.display='');});
+    document.querySelectorAll('.lcb').forEach(b=>b.classList.remove('op'));
+    document.querySelectorAll('.lch').forEach(h=>h.classList.remove('ac'));
+    nf.style.display='none'; return;
+  }
+  let found=false;
+  document.querySelectorAll('.lcat').forEach(cat=>{
+    let cf=false;
+    cat.querySelectorAll('.ll').forEach(l=>{
+      const m=l.dataset.name.includes(q)||l.textContent.includes(q);
+      l.style.display=m?'':'none'; if(m)cf=true;
+    });
+    cat.style.display=cf?'':'none';
+    if(cf){found=true;cat.querySelector('.lcb').classList.add('op');cat.querySelector('.lch').classList.add('ac');}
+  });
+  nf.style.display=found?'none':'block';
+}
+document.getElementById('lsin').addEventListener('keyup',e=>{if(e.key==='Enter')doSearch();});
+
+/* ─── QUOTES ─────────────────────────── */
+(function(){
+  var qdata = [
+    { t:'لَيْسَ العِلْمُ مَا حُفِظَ، إِنَّما العِلْمُ مَا نَفَعَ',                                                a:'من أقوال العلماء' },
+    { t:'أوّلُ العِلْمِ حُسْنُ الاسْتماعِ، ثُمَّ الفَهْمُ، ثُمَّ الحِفْظُ، ثُمّ العملُ، ثُمَّ النّشْرُ — فإذا استمعَ العبدُ إلى كتاب الله وسنّة نبيه بنيّةٍ صادقةٍ أفهمَهُ كما يجبُ وجعلَ له في قلبِه نوراً', a:'من آداب العلم وأهله' },
+    { t:'مَن تعلَّم القرآنَ والتفسيرَ عَظُمَت قِيمتُه، ومَن نظَر في الفقهِ نَبُلَ قَدرُه، ومَن نظَر في الحديثِ قَوِيَت حُجَّتُه، ومَن نظَر في اللغةِ رَقَّ طبعُه، ومَن لم يَصُن نفسَه لم ينفعْه علمُه', a:'من حكم العلماء الربانيين' },
+    { t:'كُلُّ عِزٍّ لا يُوَطِّدُهُ عِلمٌ مَذَلَّةٌ، وكُلُّ عِلمٍ لا يُؤيِّدُهُ عقلٌ مَضَلَّةٌ',             a:'من أقوال العلماء' },
+    { t:'العلمُ أكثرُ من أن يُحاط به، فخُذوا من كلِّ شيءٍ أحسنَه',                                               a:'من أقوال العلماء' },
+    { t:'الكتبُ بساتينُ العلماء ومجالسُ الحكمة، فمن رام ثمارَها فليُدمن قراءتَها ومطالعتَها',                     a:'من أقوال العلماء' },
+    { t:'العلمُ نورٌ يقذفه اللهُ في قلبِ مَن يشاء، ومن علامات ذلك النور الفرارُ من دار الغرور والإنابةُ إلى دار الخلود', a:'من أقوال العلماء' },
+    { t:'من أراد الدنيا فعليه بالعلم، ومَن أراد الآخرةَ فعليه بالعلم، ومَن أرادَهُما معاً فعليه بالعلم',          a:'من أقوال العلماء' },
+    { t:'الكتابُ خيرُ جليسٍ في الزمان؛ لا تخشى بوائقَه، ولا تُتَّقى شراستُه، ولا تُخشى غوائلُه',               a:'من أقوال العلماء' },
+    { t:'ينبغي للعالِم أن لا يزال يُعلِّم ويُذكِّر، فإنّ الذِّكرى تنفعُ المؤمنين، ومَن أحسنَ بيانَ الحقِّ فقد أدَّى أمانةَ العلم', a:'من أقوال العلماء' }
+  ];
+
+  var track = document.getElementById('ctr');
+  var nav   = document.getElementById('cdn');
+  if (!track || !nav) return;
+
+  /* Force LTR on the slider so translateX(-N%) goes left correctly */
+  track.style.direction  = 'ltr';
+  track.style.display    = 'flex';
+  track.style.width      = '100%';
+
+  track.innerHTML = qdata.map(function(s){
+    return '<div style="min-width:100%;direction:rtl;padding:0 .5rem">'
+      + '<div class="qi"><div class="qm">\u201c</div>'
+      + '<p class="qt">' + s.t + '</p>'
+      + '<div class="qa">\u2014 ' + s.a + '</div>'
+      + '</div></div>';
+  }).join('');
+
+  qdata.forEach(function(_,i){
+    var d = document.createElement('button');
+    d.className = 'cdt' + (i===0?' ac':'');
+    d.onclick = function(){ moveTo(i); };
+    nav.appendChild(d);
+  });
+
+  var cur = 0;
+  function moveTo(n){
+    cur = (n + qdata.length) % qdata.length;
+    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+    document.querySelectorAll('.cdt').forEach(function(d,i){ d.classList.toggle('ac', i===cur); });
+  }
+  window.mcar = function(dir){ moveTo(cur + dir); };
+  setInterval(function(){ moveTo(cur+1); }, 5800);
+})();
+
+/* ─── TESTIMONIALS ──────────────────── */
+const testD=[
+  {t:'موقع أكاديمي رائع يخدم التراث الإسلامي بأسلوب عصري متميز.',n:'طالب علم'},
+  {t:'محتوى علمي غني',n:'باحث في الشريعة'},
+  {t:'تصميم جميل.',n:'باحث في الشريعة'},
+  {t:'مشروع يستحق الدعم والانتشار، وفق الله أصحابه لإتمامه.',n:'طالب علم'},
+  {t:'خزينة معرفية للمهتمين بعلوم الشريعة والبحث الأكاديمي.',n:'طالب علم'},
+  {t:'جهد مبارك في توثيق التراث الإسلامي ودراسته بالأدوات الحديثة.',n:'طالب علم'},
+  {t:'الموقع يجمع بين العلمية والجمالية بشكل نادر في المواقع العربية.',n:'طالب علم'},
+  {t:'مرجع مهم لكل باحث يريد التعرف على مناهج التأليف الإسلامي.',n:'طالب علم'},
+
+];
+document.getElementById('tg').innerHTML=testD.map((t,i)=>`
+<div class="tesc rv ${['d1','d2','d3','d4'][i%4]}">
+  <div class="teq">"</div>
+  <div class="tet">${t.t}</div>
+  <div class="ten">${t.n}</div>
+</div>`).join('');
+document.querySelectorAll('.tesc.rv').forEach(el=>obs.observe(el));
+
+/* ─── CONTACT — mailto (يفتح Outlook/Gmail) ─── */
+function sendMsg(){
+  const name = document.getElementById('fn').value.trim();
+  const email = document.getElementById('fe').value.trim();
+  const subj  = document.getElementById('fs').value.trim();
+  const msg   = document.getElementById('fm').value.trim();
+  const fmsg  = document.getElementById('fmsg');
+  if(!name || !subj || !msg){
+    fmsg.className='err'; fmsg.style.display='block';
+    fmsg.textContent='⚠️ يرجى ملء الحقول الإلزامية: الاسم والموضوع ونص الرسالة';
+    setTimeout(()=>fmsg.style.display='none', 5000);
+    return;
+  }
+  const body = `السلام عليكم ورحمة الله وبركاته،\n\nالاسم: ${name}\nالبريد: ${email||'—'}\n\n${msg}\n\n──────────────────\nمُرسَل عبر موقع: نهج اليقين في شرح مناهج المؤلفين`;
+  const mailto = `mailto:apptice.educ@gmail.com?subject=${encodeURIComponent('رسالة من الموقع – ' + subj)}&body=${encodeURIComponent(body)}`;
+  window.location.href = mailto;
+  fmsg.className='ok'; fmsg.style.display='block';
+  fmsg.textContent='✅ جارٍ فتح تطبيق البريد الإلكتروني…';
+  setTimeout(()=>fmsg.style.display='none', 6000);
+}
+</script>
+</body>
+</html>
