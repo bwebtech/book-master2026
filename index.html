@@ -201,7 +201,7 @@ body.lm .flo, body.lm .fco, body.lm .fsu, body.lm .fli a { color: var(--tx) !imp
 /* ═══════════════════════════ RESET ══════════════ */
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--tx);direction:rtl;overflow-x:hidden;transition:background .4s,color .4s}
+body{font-family:'Cairo',sans-serif;font-size:17px;background:var(--bg);color:var(--tx);direction:rtl;overflow-x:hidden;transition:background .4s,color .4s}
 
 /* ═══════════════════════════ NAV ═══════════════ */
 nav{position:fixed;top:0;width:100%;z-index:999;background:var(--nav-bg);backdrop-filter:blur(18px);border-bottom:1px solid var(--brd);height:62px;display:flex;align-items:center;padding:0 1.4rem;gap:1rem;transition:background .4s,box-shadow .3s}
@@ -546,6 +546,222 @@ body.lm .art-read-btn { color: #fff !important; }
   flex: 1; width: 100%; border: none;
   border-radius: 0 0 16px 16px; background: #fff;
 }
+
+/* ══════════════════════════════════════════════
+   VIDEO PLAYER COMPONENT — متجاوب مع كل الشاشات
+═══════════════════════════════════════════════ */
+#videos { background: var(--bg2); }
+body.lm #videos { background: #f4f4f4 !important; }
+
+/* شبكة الكروت */
+.vid-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+@media(max-width:900px){ .vid-grid{ grid-template-columns: repeat(2,1fr); } }
+@media(max-width:560px){ .vid-grid{ grid-template-columns: 1fr; } }
+
+/* كرت الفيديو */
+.vid-card {
+  background: var(--card);
+  border: 1px solid var(--card-brd);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .3s, box-shadow .3s, border-color .3s;
+  display: flex; flex-direction: column;
+}
+.vid-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(0,0,0,.24);
+  border-color: var(--gold);
+}
+
+/* الصورة المصغرة 16:9 */
+.vid-thumb {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  background: var(--bg3);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.vid-thumb img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .35s;
+}
+.vid-card:hover .vid-thumb img { transform: scale(1.06); }
+
+/* زر التشغيل */
+.vid-play-btn {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.55);
+  border: 3px solid rgba(201,168,76,.85);
+  display: flex; align-items: center; justify-content: center;
+  transition: background .25s, transform .25s, border-color .25s;
+  pointer-events: none;
+}
+.vid-play-btn svg { width:26px; height:26px; fill: var(--goldl); margin-right:-3px; }
+.vid-card:hover .vid-play-btn {
+  background: rgba(201,168,76,.92);
+  border-color: #fff;
+  transform: translate(-50%,-50%) scale(1.12);
+}
+.vid-card:hover .vid-play-btn svg { fill: #1a0e00; }
+
+/* الوقت / مدة */
+.vid-duration {
+  position: absolute; bottom: 7px; left: 8px;
+  background: rgba(0,0,0,.72);
+  color: #fff; font-size: .68rem; padding: 2px 7px;
+  border-radius: 5px; font-family: monospace;
+  pointer-events: none;
+}
+
+/* جسم الكرت */
+.vid-body {
+  padding: .95rem 1rem 1rem;
+  display: flex; flex-direction: column; flex: 1;
+}
+.vid-cat {
+  display: inline-block;
+  background: var(--tag-bg);
+  border: 1px solid var(--card-brd);
+  color: var(--gold);
+  font-size: .67rem; padding: 2px 9px;
+  border-radius: 10px; margin-bottom: .45rem;
+}
+.vid-title {
+  font-family: 'Amiri', serif;
+  color: var(--tx);
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: .3rem;
+}
+.vid-speaker {
+  color: var(--txm);
+  font-size: .78rem;
+  margin-bottom: .45rem;
+}
+.vid-desc {
+  color: var(--txl);
+  font-size: .79rem;
+  line-height: 1.7;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+body.lm .vid-title   { color: #111 !important; }
+body.lm .vid-speaker { color: #333 !important; }
+body.lm .vid-desc    { color: #555 !important; }
+
+/* ── Modal الفيديو ─────────────────────────── */
+#vid-modal .mbox {
+  max-width: min(860px, 96vw);
+  width: 100%;
+  padding: 0;
+  display: flex; flex-direction: column;
+  background: #000;
+  border: 1px solid rgba(201,168,76,.3);
+}
+.vid-modal-header {
+  padding: .65rem 1rem;
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--brd);
+  border-radius: 16px 16px 0 0;
+  gap: .5rem;
+}
+.vid-modal-title {
+  font-family: 'Amiri', serif;
+  color: var(--gold);
+  font-size: .98rem;
+  flex: 1;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.vid-modal-actions { display: flex; align-items: center; gap: .5rem; flex-shrink: 0; }
+.vid-ext-btn {
+  font-size: .74rem; color: var(--gold);
+  text-decoration: none;
+  border: 1px solid rgba(201,168,76,.5);
+  border-radius: 6px; padding: 3px 10px;
+  white-space: nowrap;
+  transition: background .2s;
+}
+.vid-ext-btn:hover { background: rgba(201,168,76,.12); }
+
+/* نسبة 16:9 للإطار */
+.vid-modal-frame-wrap {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  background: #000;
+  border-radius: 0 0 16px 16px;
+  overflow: hidden;
+}
+#vid-frame {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+
+/* معلومات الفيديو أسفل المشغّل */
+.vid-modal-info {
+  background: var(--bg2);
+  border-top: 1px solid var(--brd);
+  padding: .75rem 1.1rem;
+  border-radius: 0 0 16px 16px;
+}
+.vid-modal-info-title {
+  font-family: 'Amiri', serif;
+  color: var(--tx); font-size: .95rem;
+  margin-bottom: .25rem;
+}
+.vid-modal-info-desc {
+  color: var(--txm); font-size: .8rem; line-height: 1.7;
+}
+body.lm .vid-modal-info { background: #f4f4f4 !important; }
+body.lm .vid-modal-info-title { color: #111 !important; }
+body.lm .vid-modal-info-desc  { color: #333 !important; }
+
+@media(max-width:500px){
+  .vid-modal-header { padding: .5rem .7rem; }
+  .vid-modal-title  { font-size: .85rem; }
+  .vid-ext-btn      { display: none; }
+}
+
+/* ══ AUDIO SECTION ══ */
+#audios { background: var(--bg); }
+body.lm #audios { background: #ffffff !important; }
+.audio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.4rem; margin-top: 2.5rem;
+}
+.audio-card {
+  background: var(--card); border: 1px solid var(--card-brd);
+  border-radius: 14px; padding: 1.2rem;
+  transition: transform .28s, border-color .28s;
+}
+.audio-card:hover { transform: translateY(-4px); border-color: var(--gold); }
+.audio-icon { font-size: 2rem; margin-bottom: .6rem; }
+.audio-title {
+  font-family: 'Amiri', serif; color: var(--tx);
+  font-size: 1rem; margin-bottom: .3rem; line-height: 1.5;
+}
+.audio-speaker { color: var(--gold); font-size: .8rem; margin-bottom: .5rem; }
+.audio-desc { color: var(--txl); font-size: .79rem; line-height: 1.7; margin-bottom: .8rem; }
+audio.audio-player { width: 100%; border-radius: 8px; outline: none; }
+body.lm .audio-title { color: #111 !important; }
 </style>
 </head>
 <body class="lm">
@@ -572,6 +788,8 @@ body.lm .art-read-btn { color: #fff !important; }
     <li><a href="#library">المكتبة</a></li>
     <li><a href="#testimonials">آراء</a></li>
     <li><a href="#articles">المقالات</a></li>
+    <li><a href="#videos">الفيديوهات</a></li>
+    <li><a href="#audios">الصوتيات</a></li>
     <li><a href="#contact">التواصل</a></li>
   </ul>
   <button class="ntgl" onclick="toggleMode()" id="tglBtn">🌙 الوضع الداكن</button>
@@ -913,6 +1131,33 @@ teamMembers.forEach(function(member, idx) {
   </div>
 </div>
 
+<!-- ═══ VIDEO MODAL ═══ -->
+<div class="mov" id="vid-modal" onclick="if(event.target===this)closeVidModal()">
+  <div class="mbox" onclick="event.stopPropagation()">
+    <!-- رأس النافذة -->
+    <div class="vid-modal-header">
+      <span class="vid-modal-title" id="vid-modal-title">مشاهدة الفيديو</span>
+      <div class="vid-modal-actions">
+        <a id="vid-modal-ext" href="#" target="_blank" rel="noopener" class="vid-ext-btn">
+          ↗ يوتيوب
+        </a>
+        <button class="mcl" style="position:static;margin:0" onclick="closeVidModal()">✕</button>
+      </div>
+    </div>
+    <!-- مشغّل الفيديو 16:9 -->
+    <div class="vid-modal-frame-wrap">
+      <iframe id="vid-frame" src="" title="مشغّل الفيديو"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
+    </div>
+    <!-- معلومات أسفل المشغّل -->
+    <div class="vid-modal-info">
+      <div class="vid-modal-info-title" id="vid-modal-info-title"></div>
+      <div class="vid-modal-info-desc"  id="vid-modal-info-desc"></div>
+    </div>
+  </div>
+</div>
+
 <!-- ═══ ARTICLES ═══ -->
 <section id="articles">
   <div class="mxw">
@@ -922,6 +1167,30 @@ teamMembers.forEach(function(member, idx) {
       <p class="sdsc">أبحاث ودراسات علمية أعدّها طلبة ماستر الشريعة والابتكار الرقمي في خدمة التراث الإسلامي</p>
     </div>
     <div class="art-grid" id="art-grid"></div>
+  </div>
+</section>
+
+<!-- ═══ VIDEOS ═══ -->
+<section id="videos">
+  <div class="mxw">
+    <div class="tc rv">
+      <div class="slbl">محاضرات ودروس</div>
+      <h2 class="stit">الفيديوهات <span>العلمية</span></h2>
+      <p class="sdsc">محاضرات ودروس علمية في خدمة التراث الإسلامي</p>
+    </div>
+    <div class="vid-grid" id="vid-grid"></div>
+  </div>
+</section>
+
+<!-- ═══ AUDIOS ═══ -->
+<section id="audios">
+  <div class="mxw">
+    <div class="tc rv">
+      <div class="slbl">دروس مسموعة</div>
+      <h2 class="stit">الصوتيات <span>العلمية</span></h2>
+      <p class="sdsc">دروس وندوات صوتية في مجال التراث الإسلامي والعلوم الشرعية</p>
+    </div>
+    <div class="audio-grid" id="audio-grid"></div>
   </div>
 </section>
 
@@ -960,7 +1229,7 @@ teamMembers.forEach(function(member, idx) {
   <div class="fli">
     <a href="#hero">الرئيسية</a><a href="#about">المشروع</a><a href="#chapters">المحاور</a>
     <a href="#method">المنهج</a><a href="#team">الفريق</a><a href="#library">المكتبة</a>
-    <a href="#quotes">الاقتباسات</a><a href="#testimonials">آراء</a><a href="#articles">المقالات</a><a href="#contact">التواصل</a>
+    <a href="#quotes">الاقتباسات</a><a href="#testimonials">آراء</a><a href="#articles">المقالات</a><a href="#videos">الفيديوهات</a><a href="#audios">الصوتيات</a><a href="#contact">التواصل</a>
   </div>
   <!-- SOCIAL -->
   <div class="social-row">
@@ -974,7 +1243,7 @@ teamMembers.forEach(function(member, idx) {
       <svg viewBox="0 0 24 24" fill="var(--gold)"><path d="M24 12.073C24 5.406 18.627 0 12 0S0 5.406 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.883v2.27h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
     </a>
     <!-- YouTube -->
-    <a class="soc-ic" href="https://www.youtube.com/@allmarifa" target="_blank" title="يوتيوب">
+    <a class="soc-ic" href="https://youtube.com/allmarifa" target="_blank" title="يوتيوب">
       <svg viewBox="0 0 24 24" fill="var(--gold)"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
     </a>
   </div>
@@ -3570,7 +3839,7 @@ const articlesData = [
     authorBio:   'طالب باحث في ماستر الشريعة والابتكار الرقمي، كلية الشريعة والقانون بأيت ملول.',
     category:    'علوم التاريخ',
     description: 'يوثق الكتاب لتاريخ المدينة الحضاري ويضم تراجم لأكثر من الأعلام والعلماء والمحدثين والقضاة والشعراء الذين ولدوا فيها، أو نزلوا بها، أو زاروها.',
-    img:         'articles/article_01.JPG',
+    img:         'articles/article_01.jpg',
     pdfUrl:      'articles/article_01.pdf'
   },
   /* 02 */ {
@@ -3579,7 +3848,7 @@ const articlesData = [
     authorBio:   'طالب باحث في ماستر الشريعة والابتكار الرقمي، كلية الشريعة والقانون بأيت ملول.',
     category:    'علوم التاريخ',
     description: 'التاريخ الكبير" المعروف بـ "تاريخ ابن أبي خيثمة" من أمهات كتب الحديث والرجال والتاريخ في التراث الإسلامي.',
-    img:         'articles/article_02.JPG',
+    img:         'articles/article_02.jpg',
     pdfUrl:      'articles/article_02.pdf'
   },
   /* 03 */ {
@@ -3588,7 +3857,7 @@ const articlesData = [
     authorBio:   'طالب باحث في ماستر الشريعة والابتكار الرقمي، كلية الشريعة والقانون بأيت ملول.',
     category:    'الفقه الإسلامي',
     description: 'وصف مختصر للمقالة العلمية الثالثة — يُرجى تعديل هذا الوصف بمحتوى المقالة الحقيقي.',
-    img:         'articles/article_00.JPG',
+    img:         'articles/article_00.jpg',
     pdfUrl:      'articles/article_00.pdf'
   },
   /* 04 */ {
@@ -3597,7 +3866,7 @@ const articlesData = [
     authorBio:   'طالب باحث في ماستر الشريعة والابتكار الرقمي، كلية الشريعة والقانون بأيت ملول.',
     category:    'علوم التفسير',
     description: 'وصف مختصر للمقالة العلمية الرابعة — يُرجى تعديل هذا الوصف بمحتوى المقالة الحقيقي.',
-    img:         'articles/article_00.JPG',
+    img:         'articles/article_00.jpg',
     pdfUrl:      'articles/article_00.pdf'
   },
   /* 05 */ {
@@ -3606,7 +3875,7 @@ const articlesData = [
     authorBio:   'طالب باحث في ماستر الشريعة والابتكار الرقمي، كلية الشريعة والقانون بأيت ملول.',
     category:    'السيرة النبوية',
     description: 'وصف مختصر للمقالة العلمية الخامسة — يُرجى تعديل هذا الوصف بمحتوى المقالة الحقيقي.',
-    img:         'articles/article_00.JPG',
+    img:         'articles/article_00.jpg',
     pdfUrl:      'articles/article_00.pdf'
   },
   /* 06 */ {
@@ -3615,7 +3884,7 @@ const articlesData = [
     authorBio:   'طالب باحث في ماستر الشريعة والابتكار الرقمي، كلية الشريعة والقانون بأيت ملول.',
     category:    'اللغة العربية',
     description: 'وصف مختصر للمقالة العلمية السادسة — يُرجى تعديل هذا الوصف بمحتوى المقالة الحقيقي.',
-    img:         'articles/article_00.JPG',
+    img:         'articles/article_00.jpg',
     pdfUrl:      'articles/article_00.pdf'
   },
 
@@ -3625,7 +3894,7 @@ const articlesData = [
     authorBio:   'طالب باحث في ماستر الشريعة والابتكار الرقمي، كلية الشريعة والقانون بأيت ملول.',
     category:    'السيرة النبوية',
     description: 'وصف مختصر للمقالة العلمية الخامسة — يُرجى تعديل هذا الوصف بمحتوى المقالة الحقيقي.',
-    img:         'articles/article_00.JPG',
+    img:         'articles/article_00.jpg',
     pdfUrl:      'articles/article_00.pdf'
   },
 
@@ -3635,7 +3904,7 @@ const articlesData = [
     authorBio:   'طالب باحث في ماستر الشريعة والابتكار الرقمي، كلية الشريعة والقانون بأيت ملول.',
     category:    'السيرة النبوية',
     description: 'وصف مختصر للمقالة العلمية الخامسة — يُرجى تعديل هذا الوصف بمحتوى المقالة الحقيقي.',
-    img:         'articles/article_00.JPG',
+    img:         'articles/article_00.jpg',
     pdfUrl:      'articles/article_00.pdf'
   },
 
@@ -3645,7 +3914,7 @@ const articlesData = [
     authorBio:   'طالب باحث في ماستر الشريعة والابتكار الرقمي، كلية الشريعة والقانون بأيت ملول.',
     category:    'السيرة النبوية',
     description: 'وصف مختصر للمقالة العلمية الخامسة — يُرجى تعديل هذا الوصف بمحتوى المقالة الحقيقي.',
-    img:         'articles/article_00.JPG',
+    img:         'articles/article_00.jpg',
     pdfUrl:      'articles/article_00.pdf'
   },
 
@@ -3655,7 +3924,7 @@ const articlesData = [
     authorBio:   'طالب باحث في ماستر الشريعة والابتكار الرقمي، كلية الشريعة والقانون بأيت ملول.',
     category:    'السيرة النبوية',
     description: 'وصف مختصر للمقالة العلمية الخامسة — يُرجى تعديل هذا الوصف بمحتوى المقالة الحقيقي.',
-    img:         'articles/article_00.JPG',
+    img:         'articles/article_00.jpg',
     pdfUrl:      'articles/article_00.pdf'
   },
 
@@ -3665,7 +3934,7 @@ const articlesData = [
     authorBio:   'طالب باحث في ماستر الشريعة والابتكار الرقمي، كلية الشريعة والقانون بأيت ملول.',
     category:    'السيرة النبوية',
     description: 'وصف مختصر للمقالة العلمية الخامسة — يُرجى تعديل هذا الوصف بمحتوى المقالة الحقيقي.',
-    img:         'articles/article_00.JPG',
+    img:         'articles/article_00.jpg',
     pdfUrl:      'articles/article_00.pdf'
   },
 
@@ -3675,7 +3944,7 @@ const articlesData = [
     authorBio:   'طالب باحث في ماستر الشريعة والابتكار الرقمي، كلية الشريعة والقانون بأيت ملول.',
     category:    'السيرة النبوية',
     description: 'وصف مختصر للمقالة العلمية الخامسة — يُرجى تعديل هذا الوصف بمحتوى المقالة الحقيقي.',
-    img:         'articles/article_00.JPG',
+    img:         'articles/article_00.jpg',
     pdfUrl:      'articles/article_00.pdf'
   },
 
@@ -3733,6 +4002,188 @@ function openArticlePDF(){
   closeModal('art-modal');
   openModal('pdf-modal');
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   ▶ VIDEO PLAYER COMPONENT
+   ══════════════════════════════════════════════════════════════════════
+   كيفية إضافة فيديو جديد — أضف كائناً بهذه الحقول:
+   ┌─────────────┬──────────────────────────────────────────────────────┐
+   │ title       │ عنوان الفيديو                                        │
+   │ speaker     │ اسم المحاضر / المقدّم                                │
+   │ category    │ التصنيف (اختياري)                                    │
+   │ desc        │ وصف مختصر                                            │
+   │ duration    │ المدة مثل '12:34' (اختياري)                         │
+   │ embedUrl    │ رابط embed من يوتيوب:                                │
+   │             │   https://www.youtube.com/embed/VIDEO_ID             │
+   └─────────────┴──────────────────────────────────────────────────────┘
+   ══════════════════════════════════════════════════════════════════════ */
+const videosData = [
+  /* 01 */ {
+    title:    'بودكاست-كتاب تاريخ بغداد',
+    speaker:  'الطالبان الباحثان : محمد بوشاطر - بدر الريمش',
+    category: 'علوم التاريخ',
+    desc:     'شرح مفصّل لمنهجية الكاتب في مؤلفه.',
+    duration: '',
+    embedUrl: 'https://youtu.be/5jkmkpkwUlc?si=XxW6GgmW64vMrl11'
+  },
+  /* 02 */ {
+    title:    'بودكاست-كتاب تاريخ ابن خيثمة',
+    speaker:  'الطالب الباحث : بوبكر ميس',
+    category: 'علوم التاريخ',
+    desc:     'شرح مفصّل لمنهجية الكاتب في مؤلفه.',
+    duration: '',
+    embedUrl: 'https://www.youtube.com/watch?v=XDHRTIXj99w'
+  },
+  /* 03 */ {
+    title:    'نهج اليقين-كتاب تاريخ بغداد',
+    speaker:  'الطالبان الباحثان : محمد بوشاطر - بدر الريمش',
+    category: 'علوم التاريخ',
+    desc:     'شرح مفصّل لمنهجية الكاتب في مؤلفه.',
+    duration: '',
+    embedUrl: 'https://www.youtube.com/watch?v=0jJtWybTYqA'
+  },
+  /* 04 */ {
+    title:    'نهج اليقين-كتاب تاريخ ابن خيثمة',
+    speaker:  'الطالب الباحث : بوبكر ميس',
+    category: 'علوم التاريخ',
+    desc:     'شرح مفصّل لمنهجية الكاتب في مؤلفه.',
+    duration: '',
+    embedUrl: 'https://www.youtube.com/watch?v=zZ5HpO_8m3s&t=123s'
+  },
+  /* 05 */ {
+    title:    ' المحاضرة الرابعة - التفسير الفقهي والابتكار الرقمي ',
+    speaker:  'الطالبة الباحثون : بوبكر ميس - بدر الريمش - محمد الأمين أشن',
+    category: 'مادة التفسير الفقهي ونتائج الحوسبة',
+    desc:     ' التفسير الفقهي وعلاقته بالابتكار الرقمي والذكاء الاصطناعي.',
+    duration: '',
+    embedUrl: 'https://www.youtube.com/watch?v=VBi7Hr0aLSA'
+  },
+  /* أضف فيديوهات جديدة هنا ↓ */
+];
+
+/* ── استخراج معرّف الفيديو من أي صيغة رابط ── */
+function ytId(url){
+  var patterns = [
+    /youtube\.com\/embed\/([^?&/]+)/,
+    /[?&]v=([^&]+)/,
+    /youtu\.be\/([^?&/]+)/
+  ];
+  for(var i=0;i<patterns.length;i++){
+    var m = url.match(patterns[i]);
+    if(m) return m[1];
+  }
+  return url;
+}
+
+/* ── بناء شبكة الكروت ── */
+(function buildVideos(){
+  var g = document.getElementById('vid-grid');
+  if(!g) return;
+  if(!videosData.length){
+    g.innerHTML = '<p style="color:var(--txl);text-align:center;padding:2rem">لا توجد فيديوهات بعد</p>';
+    return;
+  }
+  g.innerHTML = videosData.map(function(v, i){
+    var id    = ytId(v.embedUrl || '');
+    var thumb = id ? 'https://img.youtube.com/vi/'+id+'/mqdefault.jpg' : '';
+    var thumbHtml = thumb
+      ? '<img src="'+thumb+'" alt="'+v.title+'" loading="lazy" onerror="this.style.display=\'none\'">'
+      : '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--txl);font-size:2rem">🎬</div>';
+    var durHtml = v.duration
+      ? '<span class="vid-duration">'+v.duration+'</span>' : '';
+    var catHtml = v.category
+      ? '<span class="vid-cat">'+v.category+'</span>' : '';
+    return (
+      '<div class="vid-card rv" onclick="openVidModal('+i+')" role="button" tabindex="0" '+
+           'onkeydown="if(event.key===\'Enter\')openVidModal('+i+')">' +
+        '<div class="vid-thumb">' +
+          thumbHtml +
+          '<div class="vid-play-btn">' +
+            '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>' +
+          '</div>' +
+          durHtml +
+        '</div>' +
+        '<div class="vid-body">' +
+          catHtml +
+          '<div class="vid-title">'+v.title+'</div>' +
+          '<div class="vid-speaker">🎙 '+v.speaker+'</div>' +
+          '<div class="vid-desc">'+v.desc+'</div>' +
+        '</div>' +
+      '</div>'
+    );
+  }).join('');
+  document.querySelectorAll('.vid-card.rv').forEach(function(el){ obs.observe(el); });
+})();
+
+/* ── فتح نافذة الفيديو ── */
+function openVidModal(i){
+  var v  = videosData[i];
+  var id = ytId(v.embedUrl || '');
+  /* رابط embed نظيف مع autoplay */
+  var src = 'https://www.youtube.com/embed/' + id +
+            '?autoplay=1&rel=0&modestbranding=1' +
+            '&enablejsapi=1&origin=' +
+            encodeURIComponent(location.protocol+'//'+location.host);
+  document.getElementById('vid-frame').src          = src;
+  document.getElementById('vid-modal-title').textContent      = v.title;
+  document.getElementById('vid-modal-info-title').textContent = v.title;
+  document.getElementById('vid-modal-info-desc').textContent  = v.desc || '';
+  document.getElementById('vid-modal-ext').href =
+    'https://www.youtube.com/watch?v=' + id;
+  openModal('vid-modal');
+}
+
+/* ── إغلاق + إيقاف الصوت ── */
+function closeVidModal(){
+  document.getElementById('vid-frame').src = '';
+  closeModal('vid-modal');
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   الصوتيات — عدّل بيانات كل ملف صوتي هنا بشكل مستقل
+   الحقول:
+     title   : عنوان الدرس
+     speaker : اسم المتحدث
+     desc    : وصف مختصر
+     src     : مسار الملف الصوتي (audio/audio_01.mp3)
+   ══════════════════════════════════════════════════════════════════════ */
+const audiosData = [
+  /* 01 */ {
+    title:   'بودكاست-نهج اليقين-تاريخ بغداد لابن الخطيب',
+    speaker: 'البحث من إعداد الطالبان الباحثان محمد بوشاطر - الريمش بدر',
+    desc:    'شرح مفصّل لمنهجية الكاتب في مؤلفه.',
+    src:     'audio/audio_01.mp3'
+  },
+  /* 02 */ {
+    title:   'بودكاست-نهج اليقين-تاريخ ابن خيثمة',
+    speaker: 'البحث من إعداد الطالب الباحث بوبكر ميس',
+    desc:    'شرح مفصّل لمنهجية الكاتب في مؤلفه',
+    src:     'audio/audio_02.mp3'
+  },
+  /* أضف دروساً جديدة هنا بنفس الصيغة */
+];
+
+(function buildAudios(){
+  var g = document.getElementById('audio-grid');
+  if(!g) return;
+  g.innerHTML = audiosData.map(function(a){
+    return (
+      '<div class="audio-card rv">' +
+        '<div class="audio-icon">🎧</div>' +
+        '<div class="audio-title">' + a.title + '</div>' +
+        '<div class="audio-speaker">🎙 ' + a.speaker + '</div>' +
+        '<div class="audio-desc">' + a.desc + '</div>' +
+        '<audio class="audio-player" controls preload="none">' +
+          '<source src="' + a.src + '" type="audio/mpeg">' +
+        '</audio>' +
+      '</div>'
+    );
+  }).join('');
+  document.querySelectorAll('.audio-card.rv').forEach(function(el){ obs.observe(el); });
+})();
+
+
 
 </script>
 </body>
