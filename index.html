@@ -200,20 +200,40 @@ body.lm .flo, body.lm .fco, body.lm .fsu, body.lm .fli a { color: var(--tx) !imp
 
 /* ═══════════════════════════ RESET ══════════════ */
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'Cairo',sans-serif;font-size:17px;background:var(--bg);color:var(--tx);direction:rtl;overflow-x:hidden;transition:background .4s,color .4s}
+html{scroll-behavior:smooth;font-size:18px}
+body{font-family:'Cairo',sans-serif;font-size:1rem;background:var(--bg);color:var(--tx);direction:rtl;overflow-x:hidden;transition:background .4s,color .4s}
 
 /* ═══════════════════════════ NAV ═══════════════ */
 nav{position:fixed;top:0;width:100%;z-index:999;background:var(--nav-bg);backdrop-filter:blur(18px);border-bottom:1px solid var(--brd);height:62px;display:flex;align-items:center;padding:0 1.4rem;gap:1rem;transition:background .4s,box-shadow .3s}
 nav.sc{box-shadow:0 4px 28px rgba(0,0,0,.35)}
 .nlogo{font-family:'Amiri',serif;color:var(--gold);display:flex;align-items:center;gap:.45rem;font-size:.95rem;text-decoration:none;flex-shrink:0}
 .nlinks{display:flex;gap:1.1rem;list-style:none;flex:1;justify-content:center}
-.nlinks a{color:var(--tx);text-decoration:none;font-size:.79rem;font-weight:600;transition:color .2s;position:relative;white-space:nowrap}
+.nlinks a{color:var(--tx);text-decoration:none;font-size:.88rem;font-weight:600;transition:color .2s;position:relative;white-space:nowrap}
 .nlinks a::after{content:'';position:absolute;bottom:-3px;right:0;width:0;height:1px;background:var(--gold);transition:width .28s}
 .nlinks a:hover{color:var(--gold)}.nlinks a:hover::after{width:100%}
-.ntgl{background:var(--card);border:1px solid var(--card-brd);color:var(--gold);padding:5px 11px;border-radius:18px;cursor:pointer;font-size:.76rem;font-family:'Cairo',sans-serif;white-space:nowrap;transition:background .2s}
+.ntgl{background:var(--card);border:1px solid var(--card-brd);color:var(--gold);padding:5px 11px;border-radius:18px;cursor:pointer;font-size:.94rem;font-family:'Cairo',sans-serif;white-space:nowrap;transition:background .2s;flex-shrink:0}
 .ntgl:hover{background:rgba(201,168,76,.15)}
-@media(max-width:860px){.nlinks{display:none}}
+
+/* ── زر الهامبرغر ── */
+.nham{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:40px;height:40px;background:var(--card);border:1px solid var(--card-brd);border-radius:8px;cursor:pointer;flex-shrink:0;transition:background .2s}
+.nham span{display:block;width:20px;height:2px;background:var(--gold);border-radius:2px;transition:transform .3s,opacity .3s}
+.nham.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nham.open span:nth-child(2){opacity:0}
+.nham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ── قائمة جوال منسدلة ── */
+.nmob{display:none;position:fixed;top:62px;right:0;left:0;z-index:998;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:2px solid var(--brd);padding:1rem 1.4rem 1.4rem;flex-direction:column;gap:0;max-height:calc(100vh - 62px);overflow-y:auto;transform:translateY(-8px);opacity:0;transition:transform .28s,opacity .28s}
+.nmob.open{display:flex;transform:translateY(0);opacity:1}
+.nmob a{color:var(--tx);text-decoration:none;font-size:.9rem;font-weight:600;padding:.75rem 0;border-bottom:1px solid var(--brd);display:block;transition:color .2s}
+.nmob a:last-of-type{border-bottom:none}
+.nmob a:hover{color:var(--gold)}
+.nmob .ntgl-mob{margin-top:1rem;width:100%;text-align:center;background:var(--card);border:1px solid var(--card-brd);color:var(--gold);padding:9px;border-radius:10px;cursor:pointer;font-size:.85rem;font-family:'Cairo',sans-serif}
+
+@media(max-width:860px){
+  .nlinks{display:none}
+  .ntgl{display:none}
+  .nham{display:flex}
+}
 
 /* ═══════════════════════════ HERO ══════════════ */
 #hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:62px;
@@ -228,11 +248,11 @@ body.lm #hero{background:radial-gradient(ellipse at 68% 42%,#c8dfc8 0%,#ddd8c4 5
 @keyframes fl2{0%,100%{transform:translate(0,0)}50%{transform:translate(18px,-28px)}}
 .hc{max-width:1180px;margin:0 auto;padding:3.8rem 1.8rem;display:grid;grid-template-columns:1fr 1fr;gap:2.8rem;align-items:center;width:100%;position:relative;z-index:2}
 @media(max-width:740px){.hc{grid-template-columns:1fr;gap:2rem;text-align:center}.bv{order:-1}.hbtns{justify-content:center!important}}
-.hbdg{display:inline-flex;align-items:center;background:rgba(201,168,76,.14);border:1px solid rgba(201,168,76,.38);color:var(--goldl);font-size:.74rem;padding:4px 12px;border-radius:18px;margin-bottom:1rem;animation:fid .8s ease both}
-.htit{font-family:'Amiri',serif;font-size:clamp(1.85rem,3.8vw,2.95rem);font-weight:700;line-height:1.3;color:var(--tx);margin-bottom:.65rem;animation:fid .8s .1s ease both}
+.hbdg{display:inline-flex;align-items:center;background:rgba(201,168,76,.14);border:1px solid rgba(201,168,76,.38);color:var(--goldl);font-size:.85rem;padding:4px 12px;border-radius:18px;margin-bottom:1rem;animation:fid .8s ease both}
+.htit{font-family:'Amiri',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:700;line-height:1.3;color:var(--tx);margin-bottom:.65rem;animation:fid .8s .1s ease both}
 .htit span{color:var(--gold)}
 .hsub{font-size:.91rem;color:var(--txm);line-height:1.9;margin-bottom:1.4rem;animation:fid .8s .2s ease both}
-.hmeta{font-size:.77rem;color:var(--goldp);margin-bottom:1.7rem;line-height:2.1;animation:fid .8s .3s ease both}
+.hmeta{font-size:.88rem;color:var(--goldp);margin-bottom:1.7rem;line-height:2.1;animation:fid .8s .3s ease both}
 .hmeta span{display:block}
 .hbtns{display:flex;flex-wrap:nowrap;gap:.55rem;animation:fid .8s .4s ease both;align-items:center}
 @media(max-width:500px){.hbtns{flex-wrap:wrap}}
@@ -274,13 +294,13 @@ body.lm .bp{color:#2a1400}
 .fbi{background:linear-gradient(135deg,#1e5c37,#0d3320);border:1px solid rgba(201,168,76,.48);border-radius:10px;padding:.48rem .75rem;display:flex;align-items:center;gap:.4rem;box-shadow:0 7px 24px rgba(0,0,0,.48);cursor:pointer;transition:transform .2s}
 .fbi:hover{transform:scale(1.04)}
 .fbc{width:26px;height:37px;background:linear-gradient(160deg,#2a7a4a,#0d3320);border-radius:2px 5px 5px 2px;border:1px solid rgba(201,168,76,.38);display:flex;align-items:center;justify-content:center;font-size:.56rem;color:var(--gold);font-family:'Amiri',serif}
-.fbt{color:var(--goldl);font-size:.65rem;font-family:'Amiri',serif;line-height:1.4}
+.fbt{color:var(--goldl);font-size:.88rem;font-family:'Amiri',serif;line-height:1.4}
 
 /* ═══════════════════════════ SECTIONS ══════════ */
 section{padding:5rem 1.8rem}
-.slbl{display:inline-flex;align-items:center;gap:.45rem;color:var(--gold);font-size:.73rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:.65rem}
+.slbl{display:inline-flex;align-items:center;gap:.45rem;color:var(--gold);font-size:.94rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:.65rem}
 .slbl::before,.slbl::after{content:'';display:inline-block;width:17px;height:1px;background:var(--gold);opacity:.6}
-.stit{font-family:'Amiri',serif;font-size:clamp(1.6rem,2.8vw,2.35rem);color:var(--tx);margin-bottom:.8rem;line-height:1.3}
+.stit{font-family:'Amiri',serif;font-size:clamp(1.75rem,3vw,2.55rem);color:var(--tx);margin-bottom:.8rem;line-height:1.3}
 .stit span{color:var(--gold)}
 .sdsc{color:var(--txm);line-height:1.9;font-size:.9rem;max-width:640px}
 .mxw{max-width:1180px;margin:0 auto}
@@ -307,8 +327,8 @@ body.lm .cc{background:linear-gradient(140deg,rgba(200,228,200,.5),rgba(175,210,
 .cc:hover{transform:translateY(-5px);border-color:rgba(201,168,76,.5);box-shadow:0 16px 42px rgba(0,0,0,.38)}
 .cci{width:48px;height:48px;border-radius:11px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;font-size:1.35rem;margin-bottom:.85rem}
 .cc h3{font-family:'Amiri',serif;color:var(--tx);font-size:1.02rem;margin-bottom:.42rem}
-.cc p{color:var(--txm);font-size:.79rem;line-height:1.7;margin-bottom:.85rem}
-.cbt{color:var(--gold);font-size:.76rem;font-weight:700;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);cursor:pointer;font-family:'Cairo',sans-serif;display:inline-flex;align-items:center;gap:.3rem;border-radius:6px;padding:5px 12px;transition:all .2s}
+.cc p{color:var(--txm);font-size:.90rem;line-height:1.7;margin-bottom:.85rem}
+.cbt{color:var(--gold);font-size:.87rem;font-weight:700;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);cursor:pointer;font-family:'Cairo',sans-serif;display:inline-flex;align-items:center;gap:.3rem;border-radius:6px;padding:5px 12px;transition:all .2s}
 .cbt:hover{background:rgba(201,168,76,.2);gap:.5rem}
 
 /* ═══════════════════════════ TIMELINE ══════════ */
@@ -320,7 +340,7 @@ body.lm .cc{background:linear-gradient(140deg,rgba(200,228,200,.5),rgba(175,210,
 .tco{background:var(--card);border:1px solid var(--card-brd);border-radius:11px;padding:1.05rem;flex:1;transition:border-color .26s}
 .tco:hover{border-color:rgba(201,168,76,.38)}
 .tco h4{font-family:'Amiri',serif;color:var(--gold);font-size:.95rem;margin-bottom:.35rem}
-.tco p{color:var(--txm);font-size:.82rem;line-height:1.8}
+.tco p{color:var(--txm);font-size:.92rem;line-height:1.8}
 
 /* ═══════════════════════════ STATS ══════════════ */
 #stats{background:linear-gradient(135deg,var(--bg2),var(--bg3))}
@@ -330,7 +350,7 @@ body.lm .cc{background:linear-gradient(140deg,rgba(200,228,200,.5),rgba(175,210,
 .sc2:hover::before{opacity:1}
 .sc2:hover{transform:translateY(-3px)}
 .sn{font-family:'Amiri',serif;font-size:2.8rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:.35rem}
-.slb{color:var(--txm);font-size:.84rem}
+.slb{color:var(--txm);font-size:.94rem}
 
 /* ═══════════════════════════ TEAM ══════════════ */
 #team{background:var(--bg)}
@@ -342,9 +362,9 @@ body.lm .tav{background:linear-gradient(135deg,#a0c4a8,#78a880)}
 .tcrd.sup .tav{width:80px;height:80px;font-size:1.35rem;border-width:3px;box-shadow:0 0 0 5px rgba(201,168,76,.1)}
 .tcrd.sup{border-color:rgba(201,168,76,.45);background:rgba(201,168,76,.04)}
 .tnm{font-family:'Amiri',serif;color:var(--tx);font-size:.86rem;margin-bottom:.2rem}
-.trl{color:var(--gold);font-size:.68rem;font-weight:600}
-.tdsc{color:var(--txl);font-size:.72rem;margin-top:.35rem;line-height:1.6}
-.sbdg{display:inline-block;background:rgba(201,168,76,.13);border:1px solid rgba(201,168,76,.28);color:var(--goldl);font-size:.64rem;padding:2px 8px;border-radius:18px;margin-bottom:.5rem}
+.trl{color:var(--gold);font-size:.80rem;font-weight:600}
+.tdsc{color:var(--txl);font-size:.83rem;margin-top:.35rem;line-height:1.6}
+.sbdg{display:inline-block;background:rgba(201,168,76,.13);border:1px solid rgba(201,168,76,.28);color:var(--goldl);font-size:.87rem;padding:2px 8px;border-radius:18px;margin-bottom:.5rem}
 
 /* ═══════════════════════════ LIBRARY ══════════ */
 #library{background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%)}
@@ -352,7 +372,7 @@ body.lm .tav{background:linear-gradient(135deg,#a0c4a8,#78a880)}
 .sbar input{flex:1;background:var(--inp-bg);border:1px solid var(--card-brd);border-radius:8px;padding:9px 12px;color:var(--inp-clr);font-family:'Cairo',sans-serif;font-size:.85rem;outline:none;transition:border-color .2s;direction:rtl}
 .sbar input::placeholder{color:var(--txl)}
 .sbar input:focus{border-color:var(--gold)}
-.sbar button{background:rgba(201,168,76,.14);border:1px solid var(--card-brd);color:var(--gold);padding:9px 12px;border-radius:8px;cursor:pointer;font-family:'Cairo',sans-serif;font-size:.82rem;transition:all .2s}
+.sbar button{background:rgba(201,168,76,.14);border:1px solid var(--card-brd);color:var(--gold);padding:9px 12px;border-radius:8px;cursor:pointer;font-family:'Cairo',sans-serif;font-size:.92rem;transition:all .2s}
 .sbar button:hover{background:rgba(201,168,76,.26)}
 #lnf{display:none;text-align:center;padding:1.6rem;color:var(--goldl);font-family:'Amiri',serif;font-size:1rem;background:var(--card);border:1px solid var(--card-brd);border-radius:11px;margin-top:.85rem}
 .lcat{margin-bottom:1rem;border:1px solid var(--card-brd);border-radius:12px;overflow:hidden}
@@ -360,14 +380,14 @@ body.lm .tav{background:linear-gradient(135deg,#a0c4a8,#78a880)}
 body.lm .lch{background:linear-gradient(135deg,rgba(190,220,190,.6),rgba(155,195,155,.8))}
 .lch:hover{filter:brightness(1.1)}
 .lctit{font-family:'Amiri',serif;color:var(--gold);font-size:1.02rem;display:flex;align-items:center;gap:.55rem}
-.lcc{font-size:.68rem;color:var(--txl);font-family:'Cairo',sans-serif}
-.lca{color:var(--gold);font-size:.82rem;transition:transform .28s;display:inline-block}
+.lcc{font-size:.80rem;color:var(--txl);font-family:'Cairo',sans-serif}
+.lca{color:var(--gold);font-size:.92rem;transition:transform .28s;display:inline-block}
 .lcb{display:none;padding:1.05rem 1.3rem;background:rgba(10,30,18,.38)}
 body.lm .lcb{background:rgba(195,220,195,.25)}
 .lcb.op{display:block}
 .lch.ac .lca{transform:rotate(180deg)}
 .lgr{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.4rem}
-.ll{display:flex;align-items:center;gap:.42rem;background:var(--card);border:1px solid var(--card-brd);border-radius:7px;padding:.48rem .82rem;text-decoration:none;color:var(--txm);font-size:.79rem;transition:all .2s;cursor:pointer}
+.ll{display:flex;align-items:center;gap:.42rem;background:var(--card);border:1px solid var(--card-brd);border-radius:7px;padding:.48rem .82rem;text-decoration:none;color:var(--txm);font-size:.90rem;transition:all .2s;cursor:pointer}
 .ll:hover{border-color:rgba(201,168,76,.38);color:var(--gold);background:rgba(201,168,76,.06)}
 
 /* ═══════════════════════════ QUOTES ══════════ */
@@ -378,7 +398,7 @@ body.lm .lcb{background:rgba(195,220,195,.25)}
 .qi{background:var(--card);border:1px solid var(--card-brd);border-radius:16px;padding:2rem;text-align:center;max-width:700px;margin:0 auto;position:relative}
 .qm{position:absolute;top:.65rem;right:1.3rem;font-family:'Amiri',serif;font-size:6rem;color:var(--gold);opacity:.07;line-height:1}
 .qt{font-family:'Amiri',serif;font-size:1.15rem;color:var(--tx);line-height:2;margin-bottom:1rem;position:relative;z-index:1}
-.qa{color:var(--gold);font-size:.78rem;font-weight:700}
+.qa{color:var(--gold);font-size:.89rem;font-weight:700}
 .cdns{display:flex;justify-content:center;gap:.42rem;margin-top:1rem}
 .cdt{width:6px;height:6px;border-radius:50%;background:rgba(201,168,76,.28);border:none;cursor:pointer;transition:all .28s}
 .cdt.ac{background:var(--gold);width:19px;border-radius:3px}
@@ -392,8 +412,8 @@ body.lm .lcb{background:rgba(195,220,195,.25)}
 .tesc{background:var(--card);border:1px solid var(--card-brd);border-radius:12px;padding:1.25rem;transition:all .28s}
 .tesc:hover{transform:translateY(-3px);border-color:rgba(201,168,76,.32)}
 .teq{color:var(--gold);font-size:1.4rem;font-family:'Amiri',serif;line-height:1;margin-bottom:.4rem}
-.tet{color:var(--txm);font-size:.82rem;line-height:1.8;font-style:italic;margin-bottom:.65rem;min-height:55px}
-.ten{color:var(--goldl);font-size:.74rem;font-weight:700}
+.tet{color:var(--txm);font-size:.92rem;line-height:1.8;font-style:italic;margin-bottom:.65rem;min-height:55px}
+.ten{color:var(--goldl);font-size:.85rem;font-weight:700}
 .ten::before{content:'— ';color:var(--gold)}
 
 /* ═══════════════════════════ CONTACT ══════════ */
@@ -403,32 +423,32 @@ body.lm .lcb{background:rgba(195,220,195,.25)}
 .cinf h3{font-family:'Amiri',serif;color:var(--tx);font-size:1.15rem;margin-bottom:1.1rem}
 .cit{display:flex;align-items:flex-start;gap:.8rem;margin-bottom:1.1rem}
 .cic{width:38px;height:38px;border-radius:9px;flex-shrink:0;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.18);display:flex;align-items:center;justify-content:center;font-size:1rem}
-.citxt h4{color:var(--gold);font-size:.78rem;font-weight:700;margin-bottom:.16rem}
-.citxt p{color:var(--txm);font-size:.78rem;line-height:1.6}
+.citxt h4{color:var(--gold);font-size:.89rem;font-weight:700;margin-bottom:.16rem}
+.citxt p{color:var(--txm);font-size:.89rem;line-height:1.6}
 .cfm{display:flex;flex-direction:column;gap:.8rem}
 .cfm h3{font-family:'Amiri',serif;color:var(--tx);font-size:1.15rem}
-.fg input,.fg textarea{width:100%;background:var(--inp-bg);border:1px solid var(--card-brd);border-radius:8px;padding:9px 12px;color:var(--inp-clr);font-family:'Cairo',sans-serif;font-size:.84rem;outline:none;transition:border-color .2s;direction:rtl}
+.fg input,.fg textarea{width:100%;background:var(--inp-bg);border:1px solid var(--card-brd);border-radius:8px;padding:9px 12px;color:var(--inp-clr);font-family:'Cairo',sans-serif;font-size:.94rem;outline:none;transition:border-color .2s;direction:rtl}
 .fg input::placeholder,.fg textarea::placeholder{color:var(--txl)}
 .fg input:focus,.fg textarea:focus{border-color:var(--gold)}
 .fg textarea{height:100px;resize:none}
-#fmsg{font-size:.78rem;text-align:center;padding:.5rem;border-radius:7px;display:none}
+#fmsg{font-size:.89rem;text-align:center;padding:.5rem;border-radius:7px;display:none}
 #fmsg.ok{color:#2d7a2d;background:rgba(45,122,45,.12);border:1px solid rgba(45,122,45,.22)}
 #fmsg.err{color:#a02020;background:rgba(160,32,32,.1);border:1px solid rgba(160,32,32,.18)}
 
 /* ═══════════════════════════ FOOTER ══════════ */
 footer{background:var(--bg2);border-top:1px solid var(--brd);padding:2.2rem 1.8rem 1.5rem;text-align:center}
 .flo{font-family:'Amiri',serif;color:var(--gold);font-size:1.1rem;margin-bottom:.35rem}
-.fsu{color:var(--txl);font-size:.74rem;margin-bottom:1rem}
+.fsu{color:var(--txl);font-size:.85rem;margin-bottom:1rem}
 .fli{display:flex;justify-content:center;gap:1.3rem;flex-wrap:wrap;margin-bottom:1rem}
-.fli a{color:var(--txl);font-size:.76rem;text-decoration:none;transition:color .2s}
+.fli a{color:var(--txl);font-size:.87rem;text-decoration:none;transition:color .2s}
 .fli a:hover{color:var(--gold)}
 .social-row{display:flex;justify-content:center;align-items:center;gap:.9rem;margin-bottom:1rem}
-.social-lbl{color:var(--txm);font-size:.78rem;font-family:'Amiri',serif}
+.social-lbl{color:var(--txm);font-size:.89rem;font-family:'Amiri',serif}
 .soc-ic{width:36px;height:36px;border-radius:50%;border:1px solid var(--card-brd);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .22s;background:var(--card)}
 .soc-ic:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.25)}
 .soc-ic svg{width:17px;height:17px}
 .orn{color:var(--gold);font-size:1rem;opacity:.35;letter-spacing:8px;margin:.6rem 0}
-.fco{color:var(--txl);font-size:.68rem}
+.fco{color:var(--txl);font-size:.80rem}
 
 /* ═══════════════════════════ MODALS ══════════ */
 .mov{
@@ -452,7 +472,7 @@ body.lm .mbox{background:var(--bg2)}
 .mbd{color:var(--txm);font-size:.88rem;line-height:1.95;text-align:justify}
 .mbd strong{color:var(--tx)}
 .mtypes{margin-top:.9rem;display:flex;flex-wrap:wrap;gap:.4rem}
-.mtype-tag{background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.24);color:var(--goldl);font-size:.72rem;padding:3px 9px;border-radius:12px}
+.mtype-tag{background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.24);color:var(--goldl);font-size:.83rem;padding:3px 9px;border-radius:12px}
 
 /* BOOK MODAL */
 .bkmod-cover{width:72px;height:96px;background:linear-gradient(162deg,#1e5c37,#0d3320);border-radius:3px 8px 8px 3px;border:1px solid rgba(201,168,76,.45);display:flex;align-items:center;justify-content:center;font-size:1.4rem;float:left;margin-left:1rem;margin-bottom:.5rem;flex-shrink:0;box-shadow:-4px 4px 14px rgba(0,0,0,.4)}
@@ -498,13 +518,13 @@ body.lm .bkmod-cover{float:right;margin-left:0;margin-right:1rem}
 .art-card-cat {
   display: inline-block; background: var(--tag-bg);
   border: 1px solid var(--card-brd); color: var(--gold);
-  font-size: .68rem; padding: 2px 9px; border-radius: 10px; margin-bottom: .5rem;
+  font-size: .80rem; padding: 2px 9px; border-radius: 10px; margin-bottom: .5rem;
 }
 .art-card-title {
   font-family: 'Amiri', serif; color: var(--tx);
   font-size: 1rem; margin-bottom: .35rem; line-height: 1.45;
 }
-.art-card-author { color: var(--txm); font-size: .78rem; margin-bottom: .6rem; }
+.art-card-author { color: var(--txm); font-size: .89rem; margin-bottom: .6rem; }
 .art-card-desc   { color: var(--txl); font-size: .8rem; line-height: 1.7;
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .art-card-footer {
@@ -514,7 +534,7 @@ body.lm .bkmod-cover{float:right;margin-left:0;margin-right:1rem}
 .art-read-btn {
   background: linear-gradient(135deg, var(--gold), #7a5008);
   color: #fff; border: none; border-radius: 7px; padding: 6px 14px;
-  font-size: .78rem; font-family: 'Cairo', sans-serif; cursor: pointer;
+  font-size: .89rem; font-family: 'Cairo', sans-serif; cursor: pointer;
   transition: opacity .2s;
 }
 body.lm .art-read-btn { color: #fff !important; }
@@ -528,7 +548,7 @@ body.lm .art-read-btn { color: #fff !important; }
 .art-author-card {
   background: var(--tag-bg); border: 1px solid var(--card-brd);
   border-radius: 10px; padding: .8rem 1rem; margin: .7rem 0;
-  font-size: .84rem; color: var(--txm); line-height: 1.7;
+  font-size: .94rem; color: var(--txm); line-height: 1.7;
 }
 /* PDF viewer modal */
 #pdf-modal .mbox {
@@ -620,7 +640,7 @@ body.lm #videos { background: #f4f4f4 !important; }
 .vid-duration {
   position: absolute; bottom: 7px; left: 8px;
   background: rgba(0,0,0,.72);
-  color: #fff; font-size: .68rem; padding: 2px 7px;
+  color: #fff; font-size: .80rem; padding: 2px 7px;
   border-radius: 5px; font-family: monospace;
   pointer-events: none;
 }
@@ -635,7 +655,7 @@ body.lm #videos { background: #f4f4f4 !important; }
   background: var(--tag-bg);
   border: 1px solid var(--card-brd);
   color: var(--gold);
-  font-size: .67rem; padding: 2px 9px;
+  font-size: .80rem; padding: 2px 9px;
   border-radius: 10px; margin-bottom: .45rem;
 }
 .vid-title {
@@ -647,12 +667,12 @@ body.lm #videos { background: #f4f4f4 !important; }
 }
 .vid-speaker {
   color: var(--txm);
-  font-size: .78rem;
+  font-size: .89rem;
   margin-bottom: .45rem;
 }
 .vid-desc {
   color: var(--txl);
-  font-size: .79rem;
+  font-size: .90rem;
   line-height: 1.7;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -690,7 +710,7 @@ body.lm .vid-desc    { color: #555 !important; }
 }
 .vid-modal-actions { display: flex; align-items: center; gap: .5rem; flex-shrink: 0; }
 .vid-ext-btn {
-  font-size: .74rem; color: var(--gold);
+  font-size: .85rem; color: var(--gold);
   text-decoration: none;
   border: 1px solid rgba(201,168,76,.5);
   border-radius: 6px; padding: 3px 10px;
@@ -759,9 +779,133 @@ body.lm #audios { background: #ffffff !important; }
   font-size: 1rem; margin-bottom: .3rem; line-height: 1.5;
 }
 .audio-speaker { color: var(--gold); font-size: .8rem; margin-bottom: .5rem; }
-.audio-desc { color: var(--txl); font-size: .79rem; line-height: 1.7; margin-bottom: .8rem; }
+.audio-desc { color: var(--txl); font-size: .90rem; line-height: 1.7; margin-bottom: .8rem; }
 audio.audio-player { width: 100%; border-radius: 8px; outline: none; }
 body.lm .audio-title { color: #111 !important; }
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE — هاتف (≤600px) ولوحة لمسية (601–860px)
+═══════════════════════════════════════════════════════ */
+
+/* ── قسم عام ── */
+@media(max-width:860px){
+  section{ padding:3.5rem 1.1rem; }
+  .mxw{ padding:0 .2rem; }
+  .stit{ font-size:clamp(1.5rem,5vw,2rem); }
+  .sdsc{ font-size:.85rem; }
+}
+@media(max-width:600px){
+  section{ padding:2.8rem .85rem; }
+  .stit{ font-size:clamp(1.3rem,6vw,1.75rem); }
+}
+
+/* ── HERO ── */
+@media(max-width:860px){
+  .hc{ grid-template-columns:1fr; gap:1.8rem; text-align:center; padding:2.8rem 1.2rem; }
+  .bv{ order:-1; }
+  .hbtns{ justify-content:center!important; flex-wrap:wrap; }
+  .book-img-real{ width:200px; }
+}
+@media(max-width:600px){
+  .htit{ font-size:clamp(1.65rem,7vw,2.2rem); }
+  .hsub{ font-size:.94rem; }
+  .hmeta{ font-size:.94rem; }
+  .book-img-real{ width:160px; }
+  .hbtns{ gap:.4rem; }
+  .bp,.bo{ font-size:.89rem; padding:9px 14px; }
+}
+
+/* ── CHAPTERS GRID ── */
+@media(max-width:860px){
+  .chg{ grid-template-columns:repeat(2,1fr)!important; }
+}
+@media(max-width:520px){
+  .chg{ grid-template-columns:1fr!important; }
+}
+
+/* ── TEAM ── */
+@media(max-width:860px){
+  .tg{ grid-template-columns:repeat(3,1fr)!important; gap:1rem!important; }
+}
+@media(max-width:560px){
+  .tg{ grid-template-columns:repeat(2,1fr)!important; gap:.8rem!important; }
+}
+@media(max-width:360px){
+  .tg{ grid-template-columns:1fr!important; }
+}
+
+/* ── LIBRARY / BOOK GRID ── */
+@media(max-width:860px){
+  .bkg{ grid-template-columns:repeat(3,1fr)!important; }
+}
+@media(max-width:560px){
+  .bkg{ grid-template-columns:repeat(2,1fr)!important; }
+}
+@media(max-width:360px){
+  .bkg{ grid-template-columns:1fr!important; }
+}
+
+/* ── CAROUSEL (testimonials / quotes) ── */
+@media(max-width:600px){
+  .ctr{ padding:0 .5rem; }
+  .car-btn{ width:32px; height:32px; font-size:.9rem; }
+}
+
+/* ── ARTICLES ── */
+@media(max-width:860px){
+  .art-grid{ grid-template-columns:repeat(2,1fr)!important; }
+}
+@media(max-width:520px){
+  .art-grid{ grid-template-columns:1fr!important; }
+}
+
+/* ── VIDEOS ── */
+@media(max-width:860px){
+  .vid-grid{ grid-template-columns:repeat(2,1fr); }
+}
+@media(max-width:520px){
+  .vid-grid{ grid-template-columns:1fr; }
+}
+
+/* ── AUDIO ── */
+@media(max-width:600px){
+  .audio-grid{ grid-template-columns:1fr!important; }
+}
+
+/* ── MODALS ── */
+@media(max-width:600px){
+  .mov{ padding:.5rem; align-items:flex-end; }
+  .mbox{
+    max-height:92vh; overflow-y:auto;
+    border-radius:18px 18px 10px 10px;
+    padding:1.2rem 1rem;
+  }
+  .mtit{ font-size:1.1rem; }
+  .mbd{ font-size:.83rem; line-height:1.85; }
+  #vid-modal .mbox{ border-radius:18px 18px 0 0; max-height:95vh; }
+  #pdf-modal .mbox{ height:90vh; }
+  #pdf-frame{ height:100%; }
+}
+
+/* ── CONTACT / FOOTER ── */
+@media(max-width:860px){
+  .cog{ grid-template-columns:1fr!important; gap:1.5rem!important; }
+  .ftg{ grid-template-columns:1fr 1fr!important; gap:1rem!important; }
+}
+@media(max-width:480px){
+  .ftg{ grid-template-columns:1fr!important; }
+  .ftc{ text-align:center; }
+}
+
+/* ── floating badge ── */
+@media(max-width:600px){
+  .fbadge{ bottom:12px; left:10px; }
+  .fbi{ padding:.38rem .55rem; }
+  .fbt{ font-size:.58rem; }
+}
+
+/* ── لمنع أفقي scroll ── */
+body{ overflow-x:hidden; max-width:100vw; }
 </style>
 </head>
 <body class="lm">
@@ -793,6 +937,25 @@ body.lm .audio-title { color: #111 !important; }
     <li><a href="#contact">التواصل</a></li>
   </ul>
   <button class="ntgl" onclick="toggleMode()" id="tglBtn">🌙 الوضع الداكن</button>
+  <!-- زر الهامبرغر للهاتف -->
+  <button class="nham" id="nham" onclick="toggleMobNav()" aria-label="القائمة">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ═══ قائمة الهاتف المنسدلة ═══ -->
+<nav class="nmob" id="nmob">
+  <a href="#about"        onclick="closeMobNav()">المشروع</a>
+  <a href="#chapters"     onclick="closeMobNav()">المحاور</a>
+  <a href="#method"       onclick="closeMobNav()">المنهج</a>
+  <a href="#team"         onclick="closeMobNav()">الفريق</a>
+  <a href="#library"      onclick="closeMobNav()">المكتبة</a>
+  <a href="#testimonials" onclick="closeMobNav()">آراء</a>
+  <a href="#articles"     onclick="closeMobNav()">المقالات</a>
+  <a href="#videos"       onclick="closeMobNav()">الفيديوهات</a>
+  <a href="#audios"       onclick="closeMobNav()">الصوتيات</a>
+  <a href="#contact"      onclick="closeMobNav()">التواصل</a>
+  <button class="ntgl-mob" onclick="toggleMode();closeMobNav()" id="tglBtnMob">🌙 الوضع الداكن</button>
 </nav>
 
 <!-- ═══ PROJECT MODAL ═══ -->
@@ -840,13 +1003,13 @@ body.lm .audio-title { color: #111 !important; }
       <div style="flex:1">
         <div class="bkmod-badge" id="bkm-cat" style="margin-bottom:.4rem"></div>
         <h4 id="bkm-title" style="font-family:'Amiri',serif;color:var(--gold);font-size:1rem;margin-bottom:.3rem"></h4>
-        <p id="bkm-author" style="color:var(--txm);font-size:.82rem"></p>
+        <p id="bkm-author" style="color:var(--txm);font-size:.92rem"></p>
       </div>
     </div>
     <div class="mbd" id="bkm-body" style="font-size:.85rem;line-height:1.85"></div>
     <div style="display:flex;gap:.7rem;margin-top:1rem;flex-wrap:wrap">
-      <a id="bkm-download" href="https://www.google.com/" target="_blank" class="bp" style="font-size:.82rem">⬇ تحميل الكتاب</a>
-      <button class="bo" onclick="closeModal('bkm')" style="font-size:.82rem">إغلاق</button>
+      <a id="bkm-download" href="https://www.google.com/" target="_blank" class="bp" style="font-size:.92rem">⬇ تحميل الكتاب</a>
+      <button class="bo" onclick="closeModal('bkm')" style="font-size:.92rem">إغلاق</button>
     </div>
     <div class="mdi"></div>
     <div class="morn">✦ ◆ ✦</div>
@@ -1108,12 +1271,12 @@ teamMembers.forEach(function(member, idx) {
     <img id="art-modal-img" src="" alt="" class="art-modal-img">
     <div class="bkmod-badge" id="art-modal-cat"></div>
     <h3 id="art-modal-title" style="font-family:'Amiri',serif;color:var(--gold);font-size:1.2rem;margin:.5rem 0 .3rem"></h3>
-    <p id="art-modal-author" style="color:var(--txm);font-size:.82rem;margin-bottom:.5rem"></p>
+    <p id="art-modal-author" style="color:var(--txm);font-size:.92rem;margin-bottom:.5rem"></p>
     <div class="art-author-card" id="art-modal-bio"></div>
     <p id="art-modal-desc" style="color:var(--txm);font-size:.87rem;line-height:1.85;margin-bottom:1rem"></p>
     <div style="display:flex;gap:.7rem;flex-wrap:wrap">
-      <button class="bp" onclick="openArticlePDF()" style="font-size:.82rem">📄 تصفح المقال</button>
-      <button class="bo" onclick="closeModal('art-modal')" style="font-size:.82rem">إغلاق</button>
+      <button class="bp" onclick="openArticlePDF()" style="font-size:.92rem">📄 تصفح المقال</button>
+      <button class="bo" onclick="closeModal('art-modal')" style="font-size:.92rem">إغلاق</button>
     </div>
     <div class="mdi"></div>
     <div class="morn">✦ ◆ ✦</div>
@@ -1215,7 +1378,7 @@ teamMembers.forEach(function(member, idx) {
           <div class="fg"><textarea id="fm" placeholder="نص رسالتك... *"></textarea></div>
           <button class="bp" style="width:100%;justify-content:center" onclick="sendMsg()" id="sendbtn">📨 إرسال الرسالة</button>
           <div id="fmsg"></div>
-          <p style="color:var(--txl);font-size:.72rem;text-align:center">المرجو إبداء ملاحظات واقتراحات حول المشروع</p>
+          <p style="color:var(--txl);font-size:.83rem;text-align:center">المرجو إبداء ملاحظات واقتراحات حول المشروع</p>
         </div>
       </div>
     </div>
@@ -1275,14 +1438,44 @@ document.addEventListener('keydown',function(e){
 function toggleMode(){
   document.body.classList.toggle('lm');
   const lm = document.body.classList.contains('lm');
-  document.getElementById('tglBtn').textContent = lm ? '🌙 الوضع الداكن' : '☀️ الوضع الفاتح';
+  const label = lm ? '🌙 الوضع الداكن' : '☀️ الوضع الفاتح';
+  document.getElementById('tglBtn').textContent = label;
+  const mob = document.getElementById('tglBtnMob');
+  if(mob) mob.textContent = label;
   localStorage.setItem('theme', lm ? 'light' : 'dark');
 }
 /* Restore saved theme — light is default */
 (function(){
   const saved = localStorage.getItem('theme');
-  if(saved === 'dark'){ document.body.classList.remove('lm'); document.getElementById('tglBtn').textContent='☀️ الوضع الفاتح'; }
+  if(saved === 'dark'){
+    document.body.classList.remove('lm');
+    document.getElementById('tglBtn').textContent='☀️ الوضع الفاتح';
+    const mob = document.getElementById('tglBtnMob');
+    if(mob) mob.textContent='☀️ الوضع الفاتح';
+  }
 })();
+
+/* ─── MOBILE NAV ─────────────────────── */
+function toggleMobNav(){
+  const ham  = document.getElementById('nham');
+  const menu = document.getElementById('nmob');
+  const open = menu.classList.toggle('open');
+  ham.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+function closeMobNav(){
+  document.getElementById('nham').classList.remove('open');
+  document.getElementById('nmob').classList.remove('open');
+  document.body.style.overflow = '';
+}
+/* إغلاق عند الضغط على مسطح الـ overlay */
+document.addEventListener('click', function(e){
+  const menu = document.getElementById('nmob');
+  const ham  = document.getElementById('nham');
+  if(menu.classList.contains('open') && !menu.contains(e.target) && !ham.contains(e.target)){
+    closeMobNav();
+  }
+});
 
 /* ─── NAV SCROLL ────────────────────── */
 window.addEventListener('scroll',()=>document.getElementById('mn').classList.toggle('sc',scrollY>50));
@@ -3839,7 +4032,7 @@ const articlesData = [
     authorBio:   'طالب باحث في ماستر الشريعة والابتكار الرقمي، كلية الشريعة والقانون بأيت ملول.',
     category:    'علوم التاريخ',
     description: 'يوثق الكتاب لتاريخ المدينة الحضاري ويضم تراجم لأكثر من الأعلام والعلماء والمحدثين والقضاة والشعراء الذين ولدوا فيها، أو نزلوا بها، أو زاروها.',
-    img:         'articles/article_01.JPG',
+    img:         'articles/article_01.jpg',
     pdfUrl:      'articles/article_01.pdf'
   },
   /* 02 */ {
@@ -3848,7 +4041,7 @@ const articlesData = [
     authorBio:   'طالب باحث في ماستر الشريعة والابتكار الرقمي، كلية الشريعة والقانون بأيت ملول.',
     category:    'علوم التاريخ',
     description: 'التاريخ الكبير" المعروف بـ "تاريخ ابن أبي خيثمة" من أمهات كتب الحديث والرجال والتاريخ في التراث الإسلامي.',
-    img:         'articles/article_02.JPG',
+    img:         'articles/article_02.jpg',
     pdfUrl:      'articles/article_02.pdf'
   },
   /* 03 */ {
@@ -3857,7 +4050,7 @@ const articlesData = [
     authorBio:   'طالب باحث في ماستر الشريعة والابتكار الرقمي، كلية الشريعة والقانون بأيت ملول.',
     category:    'الفقه الإسلامي',
     description: 'وصف مختصر للمقالة العلمية الثالثة — يُرجى تعديل هذا الوصف بمحتوى المقالة الحقيقي.',
-    img:         'articles/article_00.JPG',
+    img:         'articles/article_00.jpg',
     pdfUrl:      'articles/article_00.pdf'
   },
   /* 04 */ {
@@ -3866,7 +4059,7 @@ const articlesData = [
     authorBio:   'طالب باحث في ماستر الشريعة والابتكار الرقمي، كلية الشريعة والقانون بأيت ملول.',
     category:    'علوم التفسير',
     description: 'وصف مختصر للمقالة العلمية الرابعة — يُرجى تعديل هذا الوصف بمحتوى المقالة الحقيقي.',
-    img:         'articles/article_00.JPG',
+    img:         'articles/article_00.jpg',
     pdfUrl:      'articles/article_00.pdf'
   },
   /* 05 */ {
@@ -3875,7 +4068,7 @@ const articlesData = [
     authorBio:   'طالب باحث في ماستر الشريعة والابتكار الرقمي، كلية الشريعة والقانون بأيت ملول.',
     category:    'السيرة النبوية',
     description: 'وصف مختصر للمقالة العلمية الخامسة — يُرجى تعديل هذا الوصف بمحتوى المقالة الحقيقي.',
-    img:         'articles/article_00.JPG',
+    img:         'articles/article_00.jpg',
     pdfUrl:      'articles/article_00.pdf'
   },
   /* 06 */ {
@@ -3884,7 +4077,7 @@ const articlesData = [
     authorBio:   'طالب باحث في ماستر الشريعة والابتكار الرقمي، كلية الشريعة والقانون بأيت ملول.',
     category:    'اللغة العربية',
     description: 'وصف مختصر للمقالة العلمية السادسة — يُرجى تعديل هذا الوصف بمحتوى المقالة الحقيقي.',
-    img:         'articles/article_00.JPG',
+    img:         'articles/article_00.jpg',
     pdfUrl:      'articles/article_00.pdf'
   },
 
@@ -3894,7 +4087,7 @@ const articlesData = [
     authorBio:   'طالب باحث في ماستر الشريعة والابتكار الرقمي، كلية الشريعة والقانون بأيت ملول.',
     category:    'السيرة النبوية',
     description: 'وصف مختصر للمقالة العلمية الخامسة — يُرجى تعديل هذا الوصف بمحتوى المقالة الحقيقي.',
-    img:         'articles/article_00.JPG',
+    img:         'articles/article_00.jpg',
     pdfUrl:      'articles/article_00.pdf'
   },
 
@@ -3904,7 +4097,7 @@ const articlesData = [
     authorBio:   'طالب باحث في ماستر الشريعة والابتكار الرقمي، كلية الشريعة والقانون بأيت ملول.',
     category:    'السيرة النبوية',
     description: 'وصف مختصر للمقالة العلمية الخامسة — يُرجى تعديل هذا الوصف بمحتوى المقالة الحقيقي.',
-    img:         'articles/article_00.JPG',
+    img:         'articles/article_00.jpg',
     pdfUrl:      'articles/article_00.pdf'
   },
 
@@ -3914,7 +4107,7 @@ const articlesData = [
     authorBio:   'طالب باحث في ماستر الشريعة والابتكار الرقمي، كلية الشريعة والقانون بأيت ملول.',
     category:    'السيرة النبوية',
     description: 'وصف مختصر للمقالة العلمية الخامسة — يُرجى تعديل هذا الوصف بمحتوى المقالة الحقيقي.',
-    img:         'articles/article_00.JPG',
+    img:         'articles/article_00.jpg',
     pdfUrl:      'articles/article_00.pdf'
   },
 
@@ -3924,7 +4117,7 @@ const articlesData = [
     authorBio:   'طالب باحث في ماستر الشريعة والابتكار الرقمي، كلية الشريعة والقانون بأيت ملول.',
     category:    'السيرة النبوية',
     description: 'وصف مختصر للمقالة العلمية الخامسة — يُرجى تعديل هذا الوصف بمحتوى المقالة الحقيقي.',
-    img:         'articles/article_00.JPG',
+    img:         'articles/article_00.jpg',
     pdfUrl:      'articles/article_00.pdf'
   },
 
@@ -3934,7 +4127,7 @@ const articlesData = [
     authorBio:   'طالب باحث في ماستر الشريعة والابتكار الرقمي، كلية الشريعة والقانون بأيت ملول.',
     category:    'السيرة النبوية',
     description: 'وصف مختصر للمقالة العلمية الخامسة — يُرجى تعديل هذا الوصف بمحتوى المقالة الحقيقي.',
-    img:         'articles/article_00.JPG',
+    img:         'articles/article_00.jpg',
     pdfUrl:      'articles/article_00.pdf'
   },
 
@@ -3944,7 +4137,7 @@ const articlesData = [
     authorBio:   'طالب باحث في ماستر الشريعة والابتكار الرقمي، كلية الشريعة والقانون بأيت ملول.',
     category:    'السيرة النبوية',
     description: 'وصف مختصر للمقالة العلمية الخامسة — يُرجى تعديل هذا الوصف بمحتوى المقالة الحقيقي.',
-    img:         'articles/article_00.JPG',
+    img:         'articles/article_00.jpg',
     pdfUrl:      'articles/article_00.pdf'
   },
 
@@ -3970,7 +4163,7 @@ var _currentPdfTitle = '';
           '<p class="art-card-desc">'   + a.description + '</p>' +
         '</div>' +
         '<div class="art-card-footer">' +
-          '<span style="color:var(--txl);font-size:.74rem">اضغط لمزيد من التفاصيل</span>' +
+          '<span style="color:var(--txl);font-size:.85rem">اضغط لمزيد من التفاصيل</span>' +
           '<button class="art-read-btn" onclick="event.stopPropagation();openArticleModal(' + i + ')">اقرأ المقال ←</button>' +
         '</div>' +
       '</div>'
@@ -4052,7 +4245,7 @@ const videosData = [
   },
   /* 05 */ {
     title:    ' المحاضرة الرابعة - التفسير الفقهي والابتكار الرقمي ',
-    speaker:  'الطالبة الباحثون : بوبكر ميس - بدر الريمش - محمد الأمين أشن',
+    speaker:  'الطلبة الباحثون : بوبكر ميس - بدر الريمش - محمد الأمين أشن',
     category: 'مادة التفسير الفقهي ونتائج الحوسبة',
     desc:     ' التفسير الفقهي وعلاقته بالابتكار الرقمي والذكاء الاصطناعي.',
     duration: '',
